@@ -19,6 +19,7 @@ export function ClipPlayer({
   muted = true,
 }: ClipPlayerProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const hasMountedRef = useRef(false);
   const [initialMuted] = useState(muted);
   const src = useMemo(
     () =>
@@ -33,6 +34,11 @@ export function ClipPlayer({
   );
 
   useEffect(() => {
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
+    }
+
     const iframe = iframeRef.current;
 
     if (!iframe?.contentWindow) {
@@ -46,7 +52,7 @@ export function ClipPlayer({
     });
 
     const postCommand = () => {
-      iframe.contentWindow?.postMessage(command, "https://www.youtube.com");
+      iframe.contentWindow?.postMessage(command, "*");
     };
 
     postCommand();

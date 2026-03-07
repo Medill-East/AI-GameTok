@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useSyncExternalStore, useState } from "react";
 import { ClipPlayer } from "@/components/clip-player";
 import { SaveButton } from "@/components/save-button";
 import { ShareButton } from "@/components/share-button";
@@ -21,19 +21,41 @@ interface ClipFeedProps {
   currentChannel?: VideoChannelSlug;
 }
 
+function subscribeToSoundPreference(onStoreChange: () => void) {
+  if (typeof window === "undefined") {
+    return () => undefined;
+  }
+
+  const listener = () => onStoreChange();
+
+  window.addEventListener("storage", listener);
+  window.addEventListener("gametok:sound-change", listener);
+
+  return () => {
+    window.removeEventListener("storage", listener);
+    window.removeEventListener("gametok:sound-change", listener);
+  };
+}
+
+function getSoundPreferenceSnapshot() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  try {
+    return window.localStorage.getItem(PLAYER_SOUND_KEY) === "on";
+  } catch {
+    return false;
+  }
+}
+
 export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
   const [activeId, setActiveId] = useState(clips[0]?.id ?? "");
-  const [soundEnabled, setSoundEnabled] = useState(() => {
-    if (typeof window === "undefined") {
-      return false;
-    }
-
-    try {
-      return window.localStorage.getItem(PLAYER_SOUND_KEY) === "on";
-    } catch {
-      return false;
-    }
-  });
+  const soundEnabled = useSyncExternalStore(
+    subscribeToSoundPreference,
+    getSoundPreferenceSnapshot,
+    () => false,
+  );
   const channelEntries = useMemo(
     () => Object.entries(CHANNEL_LABELS) as Array<[VideoChannelSlug, string]>,
     [],
@@ -65,15 +87,12 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
   }, [clips]);
 
   function toggleSound() {
-    setSoundEnabled((current) => {
-      const next = !current;
+    const next = !soundEnabled;
 
-      try {
-        window.localStorage.setItem(PLAYER_SOUND_KEY, next ? "on" : "off");
-      } catch {}
-
-      return next;
-    });
+    try {
+      window.localStorage.setItem(PLAYER_SOUND_KEY, next ? "on" : "off");
+      window.dispatchEvent(new Event("gametok:sound-change"));
+    } catch {}
   }
 
   return (
