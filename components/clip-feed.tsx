@@ -6,7 +6,12 @@ import { useEffect, useMemo, useState } from "react";
 import { ClipPlayer } from "@/components/clip-player";
 import { SaveButton } from "@/components/save-button";
 import { ShareButton } from "@/components/share-button";
-import { APP_NAME, CHANNEL_DESCRIPTIONS, CHANNEL_LABELS } from "@/lib/constants";
+import {
+  APP_NAME,
+  CHANNEL_DESCRIPTIONS,
+  CHANNEL_LABELS,
+  PLAYER_SOUND_KEY,
+} from "@/lib/constants";
 import type { FeedClip, VideoChannelSlug } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { formatDuration } from "@/lib/youtube";
@@ -18,6 +23,17 @@ interface ClipFeedProps {
 
 export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
   const [activeId, setActiveId] = useState(clips[0]?.id ?? "");
+  const [soundEnabled, setSoundEnabled] = useState(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    try {
+      return window.localStorage.getItem(PLAYER_SOUND_KEY) === "on";
+    } catch {
+      return false;
+    }
+  });
   const channelEntries = useMemo(
     () => Object.entries(CHANNEL_LABELS) as Array<[VideoChannelSlug, string]>,
     [],
@@ -48,6 +64,18 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
     return () => observer.disconnect();
   }, [clips]);
 
+  function toggleSound() {
+    setSoundEnabled((current) => {
+      const next = !current;
+
+      try {
+        window.localStorage.setItem(PLAYER_SOUND_KEY, next ? "on" : "off");
+      } catch {}
+
+      return next;
+    });
+  }
+
   return (
     <div className="relative h-[100svh] overflow-hidden rounded-[2rem] border border-white/50 bg-[#111] shadow-[0_30px_120px_rgba(17,34,24,0.25)]">
       <div className="pointer-events-none absolute inset-x-0 top-0 z-30 bg-gradient-to-b from-black/75 via-black/30 to-transparent px-5 pb-8 pt-5 text-white">
@@ -55,16 +83,20 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
           <div>
             <div className="eyebrow bg-white/14 text-white">Game Industry Feed</div>
             <h1 className="display-font mt-3 text-2xl font-bold">{APP_NAME}</h1>
-            <p className="mt-2 max-w-xl text-sm text-white/78">
-              {
-                "\u5148\u5237\u9ad8\u4fe1\u606f\u5bc6\u5ea6\u5207\u7247\uff0c\u518d\u7ad9\u5185\u7eed\u64ad\u539f\u89c6\u9891\u3002\u5f53\u524d\u9891\u9053\uff1a"
-              }
-              {currentChannel
-                ? ` ${CHANNEL_LABELS[currentChannel]}`
-                : ` ${"\u5168\u90e8\u7cbe\u9009"}`}
-            </p>
           </div>
-          <nav className="pointer-events-auto flex gap-2">
+          <nav className="pointer-events-auto flex flex-wrap justify-end gap-2">
+            <button
+              type="button"
+              onClick={toggleSound}
+              className={cn(
+                "rounded-full px-4 py-2 text-sm font-semibold transition",
+                soundEnabled
+                  ? "bg-[var(--accent)] text-white"
+                  : "border border-white/20 bg-black/25 text-white",
+              )}
+            >
+              {soundEnabled ? "\u58f0\u97f3\u5f00" : "\u58f0\u97f3\u5173"}
+            </button>
             <Link className="rounded-full border border-white/20 px-4 py-2 text-sm" href="/saved">
               {"\u6536\u85cf\u5939"}
             </Link>
@@ -123,6 +155,7 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
                     startSec={clip.startSec}
                     endSec={clip.endSec}
                     active
+                    muted={!soundEnabled}
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30">
@@ -161,12 +194,6 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
                         #{tag}
                       </span>
                     ))}
-                  </div>
-                  <div className="rounded-3xl border border-white/12 bg-white/8 p-4 text-sm leading-6 text-white/84">
-                    <p className="font-semibold text-white">
-                      {"\u5207\u7247\u8bf4\u660e"}
-                    </p>
-                    <p className="mt-2">{clip.transcriptZh}</p>
                   </div>
                 </div>
 

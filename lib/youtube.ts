@@ -9,15 +9,14 @@ export function buildYoutubeEmbedUrl(
   },
 ) {
   const url = new URL(`https://www.youtube.com/embed/${videoId}`);
+  url.searchParams.set("playsinline", "1");
+  url.searchParams.set("enablejsapi", "1");
 
   if (options?.autoplay) {
     url.searchParams.set("autoplay", "1");
-    url.searchParams.set("playsinline", "1");
   }
 
-  if (options?.mute) {
-    url.searchParams.set("mute", "1");
-  }
+  url.searchParams.set("mute", options?.mute ? "1" : "0");
 
   url.searchParams.set("rel", "0");
   url.searchParams.set("modestbranding", "1");
@@ -35,10 +34,10 @@ export function buildYoutubeEmbedUrl(
 }
 
 export function buildYoutubeWatchUrl(videoId: string, startSec = 0) {
-  return `https://www.youtube.com/watch?v=${videoId}&t=${Math.max(
-    0,
-    Math.floor(startSec),
-  )}s`;
+  const url = new URL("https://www.youtube.com/watch");
+  url.searchParams.set("v", videoId);
+  url.searchParams.set("t", `${Math.max(0, Math.floor(startSec))}s`);
+  return url.toString();
 }
 
 export function buildYoutubeThumbnail(videoId: string) {

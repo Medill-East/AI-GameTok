@@ -117,6 +117,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
 const GLOBAL_TITLE_BLACKLIST = [
   "official trailer",
   "teaser trailer",
+  "coming soon",
   "host announcement",
   "winners reveal",
   "brand new channel",
@@ -131,6 +132,16 @@ const LOW_VALUE_CHAPTER_PATTERNS = [
   "sponsor",
   "subscribe",
   "patreon",
+];
+
+const GENERIC_CHAPTER_PATTERNS = [
+  /^key segment$/i,
+  /^hello$/i,
+  /^december$/i,
+  /^lesson \d+$/i,
+  /^\d+\s+to\s+\d+$/i,
+  /^honou?rable mentions$/i,
+  /^other games$/i,
 ];
 
 const HIGH_SIGNAL_CHAPTER_PATTERNS = [
@@ -401,7 +412,7 @@ function extractChapters(description: string, durationSec: number) {
     .split("\n")
     .map((line) => line.trim())
     .map((line) => {
-      const match = line.match(/^((?:\d+:)?\d{1,2}:\d{2})\s*[-–]\s*(.+)$/);
+      const match = line.match(/^((?:\d+:)?\d{1,2}:\d{2})\s*[-\u2013\u2014]\s*(.+)$/);
       if (!match) {
         return null;
       }
@@ -437,15 +448,57 @@ function extractChapters(description: string, durationSec: number) {
     .filter((item) => item.endSec - item.startSec >= 30);
 }
 
+function sanitizeChapterTitle(title: string) {
+  return title
+    .replace(/https?:\/\/\S+/gi, "")
+    .replace(/\s{2,}/g, " ")
+    .replace(/\s+[-\u2013\u2014]\s*$/g, "")
+    .trim();
+}
+
+function isWeakChapterTitle(title: string) {
+  const normalized = sanitizeChapterTitle(title);
+
+  if (normalized.length < 6) {
+    return true;
+  }
+
+  return GENERIC_CHAPTER_PATTERNS.some((pattern) => pattern.test(normalized));
+}
+
+async function fetchTextWithRetry(url: string, init: RequestInit, attempts = 2) {
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, init);
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      return await response.text();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError instanceof Error ? lastError : new Error(`Request failed for ${url}`);
+}
+
 async function fetchWatchDetails(videoId: string, durationSec: number): Promise<WatchDetails> {
   const url = `https://www.youtube.com/watch?v=${videoId}`;
-  const html = await fetch(url, {
-    headers: {
-      "user-agent": "Mozilla/5.0",
-      "accept-language": "en-US,en;q=0.9",
+  const html = await fetchTextWithRetry(
+    url,
+    {
+      headers: {
+        "user-agent": "Mozilla/5.0",
+        "accept-language": "en-US,en;q=0.9",
+      },
+      cache: "no-store",
     },
-    cache: "no-store",
-  }).then((response) => response.text());
+    2,
+  );
 
   const match = html.match(/"shortDescription":"([\s\S]*?)","isCrawlable"/);
   const rawDescription = match ? JSON.parse(`"${match[1]}"`) : "";
@@ -465,21 +518,23 @@ async function fetchWatchDetails(videoId: string, durationSec: number): Promise<
 
 function buildSummary(
   channelName: string,
-  focusLabel: string,
   videoTitle: string,
   chapterTitle: string,
   leadParagraph: string,
 ) {
   const lead = leadParagraph ? ` ${leadParagraph}` : "";
-
-  return `\u6765\u81ea ${channelName} \u7684\u300a${videoTitle}\u300b\u7ae0\u8282\u5207\u7247\uff0c\u672c\u6bb5\u805a\u7126\u300c${chapterTitle}\u300d\uff0c\u9002\u5408\u5173\u6ce8${focusLabel}\u7684\u6e38\u620f\u4ece\u4e1a\u8005\u5148\u5feb\u901f\u8fc7\u4e00\u904d\u91cd\u70b9\uff0c\u518d\u7ad9\u5185\u65e0\u7f1d\u7eed\u770b\u5b8c\u6574\u5185\u5bb9\u3002${lead}`;
+  return `\u6765\u81ea ${channelName} \u7684\u300a${videoTitle}\u300b\u7ae0\u8282\u300c${chapterTitle}\u300d\u3002${lead}`.trim();
 }
 
-function buildTakeaways(focusLabel: string, chapterTitle: string) {
+function buildTakeaways(
+  focusLabel: string,
+  chapterTitle: string,
+  videoTitle: string,
+) {
   return [
-    `\u8fd9\u6761\u5207\u7247\u5bf9\u5e94\u7684\u7ae0\u8282\u662f\u300c${chapterTitle}\u300d\u3002`,
-    `\u9002\u5408\u5173\u6ce8${focusLabel}\u7684\u6e38\u620f\u4ece\u4e1a\u8005\u5feb\u901f\u7b5b\u9009\u5185\u5bb9\u3002`,
-    "\u5982\u679c\u8fd9\u6bb5\u5185\u5bb9\u6709\u4ef7\u503c\uff0c\u53ef\u4ee5\u7acb\u5373\u7ee7\u7eed\u770b\u5bf9\u5e94\u7684\u539f\u89c6\u9891\u3002",
+    `\u6765\u81ea\u300a${videoTitle}\u300b\u7684\u300c${chapterTitle}\u300d\u7247\u6bb5\u3002`,
+    `\u5185\u5bb9\u4e3b\u9898\uff1a${focusLabel}\u3002`,
+    "\u70b9\u51fb\u201c\u7ee7\u7eed\u770b\u201d\u53ef\u76f4\u63a5\u8df3\u5230\u539f\u89c6\u9891\u5bf9\u5e94\u65f6\u95f4\u70b9\u3002",
   ];
 }
 
@@ -494,6 +549,32 @@ function scoreFromViews(viewCount: number) {
     return 86;
   }
   return 82;
+}
+
+function extractVideoTopicKeywords(videoTitle: string) {
+  return videoTitle
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter(
+      (word) =>
+        word.length >= 5 &&
+        ![
+          "making",
+          "documentary",
+          "video",
+          "games",
+          "game",
+          "about",
+          "their",
+          "there",
+          "these",
+          "those",
+          "part",
+          "series",
+          "iconic",
+        ].includes(word),
+    );
 }
 
 function shouldImportVideo(item: ExtractedVideo, config: ChannelImportConfig) {
@@ -518,8 +599,8 @@ function shouldImportVideo(item: ExtractedVideo, config: ChannelImportConfig) {
   return true;
 }
 
-function scoreChapter(chapter: ChapterMarker) {
-  const normalized = chapter.title.toLowerCase();
+function scoreChapter(chapter: ChapterMarker, videoTitle?: string) {
+  const normalized = sanitizeChapterTitle(chapter.title).toLowerCase();
   let score = 0;
 
   if (!LOW_VALUE_CHAPTER_PATTERNS.some((pattern) => normalized.includes(pattern))) {
@@ -538,15 +619,40 @@ function scoreChapter(chapter: ChapterMarker) {
     score += 1;
   }
 
+  if (
+    videoTitle &&
+    extractVideoTopicKeywords(videoTitle).some((keyword) => normalized.includes(keyword))
+  ) {
+    score += 2;
+  }
+
+  if (isWeakChapterTitle(normalized)) {
+    score -= 4;
+  }
+
   return score;
 }
 
-function pickChapterClips(chapters: ChapterMarker[], durationSec: number) {
+function pickChapterClips(
+  chapters: ChapterMarker[],
+  durationSec: number,
+  videoTitle: string,
+) {
   const candidates = chapters
-    .filter((chapter) => !LOW_VALUE_CHAPTER_PATTERNS.some((pattern) => chapter.title.toLowerCase().includes(pattern)))
     .map((chapter) => ({
       ...chapter,
-      chapterScore: scoreChapter(chapter),
+      title: sanitizeChapterTitle(chapter.title),
+    }))
+    .filter(
+      (chapter) =>
+        chapter.title &&
+        !LOW_VALUE_CHAPTER_PATTERNS.some((pattern) =>
+          chapter.title.toLowerCase().includes(pattern),
+        ),
+    )
+    .map((chapter) => ({
+      ...chapter,
+      chapterScore: scoreChapter(chapter, videoTitle),
     }))
     .sort((left, right) => {
       if (left.chapterScore !== right.chapterScore) {
@@ -562,7 +668,7 @@ function pickChapterClips(chapters: ChapterMarker[], durationSec: number) {
     const fallbackStart = durationSec > 480 ? 45 : 20;
     return [
       {
-        title: "Key segment",
+        title: "",
         startSec: fallbackStart,
         endSec: Math.min(durationSec - 10, fallbackStart + 75),
       },
@@ -576,18 +682,47 @@ function pickChapterClips(chapters: ChapterMarker[], durationSec: number) {
   }));
 }
 
+function buildClipHeadline(
+  channelName: string,
+  videoTitle: string,
+  chapterTitle: string,
+  index: number,
+) {
+  const normalizedChapterTitle = sanitizeChapterTitle(chapterTitle);
+
+  if (!normalizedChapterTitle || isWeakChapterTitle(normalizedChapterTitle)) {
+    return `${channelName} / ${videoTitle}${index > 0 ? ` - Part ${index + 1}` : ""}`;
+  }
+
+  return `${channelName} / ${normalizedChapterTitle}`;
+}
+
+function buildClipTranscriptNote(chapterTitle: string, videoTitle: string, index: number) {
+  const normalizedChapterTitle = sanitizeChapterTitle(chapterTitle);
+
+  if (!normalizedChapterTitle || isWeakChapterTitle(normalizedChapterTitle)) {
+    return `\u81ea\u52a8\u5207\u7247\u4f9d\u636e\uff1a\u300a${videoTitle}\u300b\u7684\u9ad8\u4fe1\u53f7\u65f6\u95f4\u6bb5 ${index + 1}\u3002`;
+  }
+
+  return `\u81ea\u52a8\u5207\u7247\u4f9d\u636e\uff1a\u89c6\u9891\u539f\u59cb\u7ae0\u8282\u300c${normalizedChapterTitle}\u300d\u3002`;
+}
+
 async function validateYoutubeVideo(videoId: string) {
   const url =
     `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
 
-  const response = await fetch(url, {
-    headers: {
-      "user-agent": "Mozilla/5.0",
-    },
-    cache: "no-store",
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        "user-agent": "Mozilla/5.0",
+      },
+      cache: "no-store",
+    });
 
-  return response.ok;
+    return response.ok;
+  } catch {
+    return false;
+  }
 }
 
 async function fetchChannelVideos(channelId: string) {
@@ -597,15 +732,17 @@ async function fetchChannelVideos(channelId: string) {
     return [];
   }
 
-  const response = await fetch(config.videosUrl, {
-    headers: {
-      "user-agent": "Mozilla/5.0",
-      "accept-language": "en-US,en;q=0.9",
+  const html = await fetchTextWithRetry(
+    config.videosUrl,
+    {
+      headers: {
+        "user-agent": "Mozilla/5.0",
+        "accept-language": "en-US,en;q=0.9",
+      },
+      cache: "no-store",
     },
-    cache: "no-store",
-  });
-
-  const html = await response.text();
+    2,
+  );
   const match = html.match(/var ytInitialData = (\{[\s\S]*?\});<\/script>/);
 
   if (!match?.[1]) {
@@ -712,7 +849,11 @@ function buildClipRecords(
   watchDetails: WatchDetails,
 ) {
   const leadParagraph = extractLeadParagraph(watchDetails.description);
-  const chapterSlices = pickChapterClips(watchDetails.chapters, video.durationSec);
+  const chapterSlices = pickChapterClips(
+    watchDetails.chapters,
+    video.durationSec,
+    video.title,
+  );
   const baseScore = scoreFromViews(item.viewCount);
 
   return chapterSlices.map((chapter, index) => {
@@ -720,6 +861,8 @@ function buildClipRecords(
       `${video.title} ${chapter.title}`,
       defaultSlug,
     );
+    const chapterTitle = sanitizeChapterTitle(chapter.title) || video.title;
+    const clipTitle = buildClipHeadline(channelName, video.title, chapterTitle, index);
 
     return {
       id: `clip_${video.sourceVideoId}_${index}`,
@@ -727,18 +870,12 @@ function buildClipRecords(
       channelSlug,
       startSec: chapter.startSec,
       endSec: chapter.endSec,
-      zhTitle: `${channelName} / ${chapter.title}`,
-      zhSummary: buildSummary(
-        channelName,
-        focusLabel,
-        video.title,
-        chapter.title,
-        leadParagraph,
-      ),
-      zhTakeaways: buildTakeaways(focusLabel, chapter.title),
-      tags: [channelName, focusLabel, chapter.title],
-      transcriptExcerpt: chapter.title,
-      transcriptZh: `\u81ea\u52a8\u5207\u7247\u4f9d\u636e\uff1a\u89c6\u9891\u539f\u59cb\u7ae0\u8282\u300c${chapter.title}\u300d\u3002`,
+      zhTitle: clipTitle,
+      zhSummary: buildSummary(channelName, video.title, chapterTitle, leadParagraph),
+      zhTakeaways: buildTakeaways(focusLabel, chapterTitle, video.title),
+      tags: [channelName, focusLabel, chapterTitle],
+      transcriptExcerpt: chapterTitle,
+      transcriptZh: buildClipTranscriptNote(chapterTitle, video.title, index),
       score: Math.max(80, baseScore - index * 2),
       confidence: watchDetails.chapters.length ? 0.94 : 0.82,
       status: "published" as const,
@@ -811,22 +948,26 @@ export async function importPopularVideosFromChannels(
     const items = await selectVideosForImport(channel.id, limitPerChannel);
 
     for (const item of items) {
-      const watchDetails = await fetchWatchDetails(item.sourceVideoId, item.durationSec);
-      const video = toVideoRecord(channel.id, item, watchDetails);
-      const clips = buildClipRecords(
-        video,
-        channel.name,
-        config.focusLabel,
-        config.defaultSlug,
-        item,
-        watchDetails,
-      );
+      try {
+        const watchDetails = await fetchWatchDetails(item.sourceVideoId, item.durationSec);
+        const video = toVideoRecord(channel.id, item, watchDetails);
+        const clips = buildClipRecords(
+          video,
+          channel.name,
+          config.focusLabel,
+          config.defaultSlug,
+          item,
+          watchDetails,
+        );
 
-      next.videos.push(video);
-      next.clips.push(...clips);
-      next.transcripts[video.id] = watchDetails.outline;
-      summary.importedVideos += 1;
-      summary.importedClips += clips.length;
+        next.videos.push(video);
+        next.clips.push(...clips);
+        next.transcripts[video.id] = watchDetails.outline;
+        summary.importedVideos += 1;
+        summary.importedClips += clips.length;
+      } catch {
+        summary.skippedVideos += 1;
+      }
     }
 
     channel.lastSyncedAt = new Date().toISOString();

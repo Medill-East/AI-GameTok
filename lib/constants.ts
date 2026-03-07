@@ -2,6 +2,7 @@ import type { VideoChannelSlug } from "@/lib/types";
 
 export const APP_NAME = "GameTok";
 export const SAVED_CLIPS_KEY = "gametok:saved-clips";
+export const PLAYER_SOUND_KEY = "gametok:player-sound";
 export const AUTO_PUBLISH_SCORE = 80;
 export const AUTO_PUBLISH_CONFIDENCE = 0.78;
 
