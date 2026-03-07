@@ -1,0 +1,1122 @@
+⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/admin/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./lib/store.ts:3:1
+Module not found: Can't resolve '@/data/store.json'
+[0m [90m 1 |[39m [36mimport[39m { promises [36mas[39m fs } [36mfrom[39m [32m"node:fs"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m path [36mfrom[39m [32m"node:path"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m initialStore [36mfrom[39m [32m"@/data/store.json"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { buildYoutubeWatchUrl } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type {
+ [90m 6 |[39m   [33mAdminOverview[39m[33m,[39m[0m
+
+Import map: aliased to relative './data/store.json' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./lib/store.ts
+    ./app/admin/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/channel/[slug]/page.tsx:3:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 1 |[39m [36mimport[39m { notFound } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type { [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 6 |[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/channel/[slug]/page.tsx:3:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 1 |[39m [36mimport[39m { notFound } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+ [90m 2 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 3 |[39m [36mimport[39m { [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 4 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type { [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 6 |[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:9:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { formatDuration } [36mfrom[39m [32m"@/lib/youtube"[39m[33m;[39m[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/save-button.tsx:4:1
+Module not found: Can't resolve '@/lib/constants'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimport[39m { useEffect[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m { [33mSAVED_CLIPS_KEY[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 5 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m
+ [90m 6 |[39m
+ [90m 7 |[39m [36mfunction[39m readSavedIds() {[0m
+
+Import map: aliased to relative './lib/constants' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./components/save-button.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Client Component Browser]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/save-button.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Client Component SSR]
+    ./components/clip-feed.tsx [Server Component]
+    ./app/channel/[slug]/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/channel/[slug]/page.tsx:2:1
+Module not found: Can't resolve '@/components/clip-feed'
+[0m [90m 1 |[39m [36mimport[39m { notFound } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type { [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/clip-feed' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/channel/[slug]/page.tsx:2:1
+Module not found: Can't resolve '@/components/clip-feed'
+[0m [90m 1 |[39m [36mimport[39m { notFound } [36mfrom[39m [32m"next/navigation"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 2 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 3 |[39m [36mimport[39m { [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 5 |[39m [36mimport[39m type { [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/clip-feed' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:1:1
+Module not found: Can't resolve '@/components/clip-feed'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mconst[39m dynamic [33m=[39m [32m"force-dynamic"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/clip-feed' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./app/page.tsx:1:1
+Module not found: Can't resolve '@/components/clip-feed'
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { [33mClipFeed[39m } [36mfrom[39m [32m"@/components/clip-feed"[39m[33m;[39m
+ [90m   |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [36mimport[39m { getFeed } [36mfrom[39m [32m"@/lib/store"[39m[33m;[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [36mexport[39m [36mconst[39m dynamic [33m=[39m [32m"force-dynamic"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/clip-feed' inside of [project]/
+
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:7:1
+Module not found: Can't resolve '@/components/save-button'
+[0m [90m  5 |[39m [36mimport[39m { useEffect[33m,[39m useMemo[33m,[39m useState } [36mfrom[39m [32m"react"[39m[33m;[39m
+ [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/save-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+⨯ ./components/clip-feed.tsx:8:1
+Module not found: Can't resolve '@/components/share-button'
+[0m [90m  6 |[39m [36mimport[39m { [33mClipPlayer[39m } [36mfrom[39m [32m"@/components/clip-player"[39m[33m;[39m
+ [90m  7 |[39m [36mimport[39m { [33mSaveButton[39m } [36mfrom[39m [32m"@/components/save-button"[39m[33m;[39m
+[31m[1m>[22m[39m[90m  8 |[39m [36mimport[39m { [33mShareButton[39m } [36mfrom[39m [32m"@/components/share-button"[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimport[39m { [33mAPP_NAME[39m[33m,[39m [33mCHANNEL_DESCRIPTIONS[39m[33m,[39m [33mCHANNEL_LABELS[39m } [36mfrom[39m [32m"@/lib/constants"[39m[33m;[39m
+ [90m 10 |[39m [36mimport[39m type { [33mFeedClip[39m[33m,[39m [33mVideoChannelSlug[39m } [36mfrom[39m [32m"@/lib/types"[39m[33m;[39m
+ [90m 11 |[39m [36mimport[39m { cn } [36mfrom[39m [32m"@/lib/utils"[39m[33m;[39m[0m
+
+Import map: aliased to relative './components/share-button' inside of [project]/
+
+
+Import trace:
+  Server Component:
+    ./components/clip-feed.tsx
+    ./app/channel/[slug]/page.tsx
+
+https://nextjs.org/docs/messages/module-not-found
+
+

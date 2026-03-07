@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f5efe4;
+  --ink: #112218;
+  --card: rgba(255, 248, 236, 0.78);
+  --card-strong: #fff4de;
+  --line: rgba(17, 34, 24, 0.12);
+  --accent: #ff6b2c;
+  --accent-soft: rgba(255, 107, 44, 0.12);
+  --forest: #0f6b4d;
+  --gold: #e8b34b;
+  --shadow: 0 20px 80px rgba(17, 34, 24, 0.12);
+}
+
+@theme inline {
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(232, 179, 75, 0.22), transparent 24rem),
+    radial-gradient(circle at top right, rgba(15, 107, 77, 0.16), transparent 24rem),
+    linear-gradient(180deg, #fcf6eb 0%, #f3ecdd 100%);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(255, 107, 44, 0.22);
+}
+
+.display-font {
+  font-family: var(--font-display), sans-serif;
+}
+
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(18px);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.panel-card {
+  background: var(--card-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.section-shell {
+  margin-inline: auto;
+  width: min(1200px, calc(100vw - 2rem));
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(17, 34, 24, 0.08) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.balance-text {
+  text-wrap: balance;
+}
