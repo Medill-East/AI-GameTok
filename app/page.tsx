@@ -7,7 +7,7 @@ export default async function HomePage() {
   const { clips } = await getFeed();
 
   return (
-    <main className="section-shell py-4 md:py-6">
+    <main className="h-[100dvh] md:px-4 md:py-6 xl:px-6">
       <ClipFeed clips={clips} />
     </main>
   );

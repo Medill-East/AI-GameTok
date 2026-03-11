@@ -1,13 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export function ShareButton({
   title,
   url,
+  className,
 }: {
   title: string;
   url: string;
+  className?: string;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -28,7 +31,10 @@ export function ShareButton({
         setCopied(true);
         window.setTimeout(() => setCopied(false), 1500);
       }}
-      className="rounded-full border border-white/20 bg-black/25 px-4 py-2 text-sm font-semibold text-white transition hover:bg-black/40"
+      className={cn(
+        "min-h-11 rounded-full border border-white/20 bg-black/25 px-3 py-2 text-sm font-semibold text-white transition hover:bg-black/40 lg:px-4",
+        className,
+      )}
     >
       {copied ? "\u5df2\u590d\u5236" : "\u5206\u4eab"}
     </button>

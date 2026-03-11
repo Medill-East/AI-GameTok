@@ -6,6 +6,7 @@ export function buildYoutubeEmbedUrl(
     controls?: boolean;
     startSec?: number;
     endSec?: number;
+    origin?: string;
   },
 ) {
   const url = new URL(`https://www.youtube.com/embed/${videoId}`);
@@ -28,6 +29,10 @@ export function buildYoutubeEmbedUrl(
 
   if (typeof options?.endSec === "number") {
     url.searchParams.set("end", String(Math.max(0, Math.floor(options.endSec))));
+  }
+
+  if (options?.origin) {
+    url.searchParams.set("origin", options.origin);
   }
 
   return url.toString();
