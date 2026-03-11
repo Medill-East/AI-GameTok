@@ -49,3 +49,24 @@ npm run dev
 npm run lint
 npm run build
 ```
+
+## iPhone Testing
+
+Use the LAN-accessible dev server for real-device Safari testing:
+
+```bash
+npm run dev:iphone
+```
+
+Open these URLs:
+
+- Local browser: `http://127.0.0.1:3010`
+- iPhone Safari on the same Wi-Fi: `http://192.168.31.105:3010`
+
+Recommended checks:
+
+1. Load the feed in Safari and verify the first clip starts normally.
+2. Tap the global sound toggle and confirm playback position does not reset.
+3. Swipe to the next clip and confirm the sound preference is preserved.
+4. Tap `继续看` and confirm in-site resume playback works.
+5. Tap `去 YouTube 继续看` and confirm the handoff opens at the expected timestamp.
