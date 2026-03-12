@@ -224,6 +224,23 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
 }
 
 export function VideoAdminEditor({ video }: { video: VideoDetail }) {
+  const router = useRouter();
+  const [runningAction, setRunningAction] = useState<string | null>(null);
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  const runVideoAction = (endpoint: string, success: string) => {
+    setRunningAction(endpoint);
+    startTransition(async () => {
+      const response = await fetch(endpoint, { method: "POST" });
+      const result = (await response.json()) as { error?: string };
+      setRunningAction(null);
+      setStatusMessage(result.error ?? success);
+      if (response.ok) {
+        router.refresh();
+      }
+    });
+  };
+
   return (
     <div className="space-y-6">
       <section className="panel-card rounded-[2rem] p-6">
@@ -240,6 +257,63 @@ export function VideoAdminEditor({ video }: { video: VideoDetail }) {
             {"\u5019\u9009\u5207\u7247\uff1a"}
             {video.clips.length}
           </span>
+          <span className="rounded-full border border-black/10 px-4 py-2">
+            {"\u53ef\u64ad\u6027\uff1a"}
+            {video.availabilityStatus}
+          </span>
+        </div>
+        {video.playbackErrorReason ? (
+          <p className="mt-4 text-sm leading-7 text-black/65">{video.playbackErrorReason}</p>
+        ) : null}
+        <div className="mt-5 flex flex-wrap gap-3">
+          <button
+            type="button"
+            disabled={runningAction !== null}
+            onClick={() =>
+              runVideoAction(`/api/admin/videos/${video.id}/reclip`, "\u5df2\u91cd\u8dd1\u5207\u7247\u3002")
+            }
+            className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white disabled:opacity-60"
+          >
+            {runningAction === `/api/admin/videos/${video.id}/reclip`
+              ? "\u91cd\u8dd1\u4e2d..."
+              : "\u91cd\u8dd1\u5207\u7247"}
+          </button>
+          <button
+            type="button"
+            disabled={runningAction !== null}
+            onClick={() =>
+              runVideoAction(`/api/admin/videos/${video.id}/reindex`, "\u5df2\u91cd\u5efa\u641c\u7d22\u7d22\u5f15\u3002")
+            }
+            className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold disabled:opacity-60"
+          >
+            {"\u91cd\u5efa\u641c\u7d22\u7d22\u5f15"}
+          </button>
+          <button
+            type="button"
+            disabled={runningAction !== null}
+            onClick={() => {
+              setRunningAction("playback");
+              startTransition(async () => {
+                const response = await fetch("/api/admin/playback/recheck", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ videoId: video.id }),
+                });
+                const result = (await response.json()) as { error?: string };
+                setRunningAction(null);
+                setStatusMessage(result.error ?? "\u5df2\u91cd\u9a8c\u8fd9\u6761\u89c6\u9891\u7684\u53ef\u64ad\u6027\u3002");
+                if (response.ok) {
+                  router.refresh();
+                }
+              });
+            }}
+            className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold disabled:opacity-60"
+          >
+            {runningAction === "playback" ? "\u68c0\u67e5\u4e2d..." : "\u91cd\u9a8c\u53ef\u64ad\u6027"}
+          </button>
+          {statusMessage ? (
+            <p className="self-center text-sm font-semibold text-[var(--forest)]">{statusMessage}</p>
+          ) : null}
         </div>
       </section>
 

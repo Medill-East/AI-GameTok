@@ -20,5 +20,7 @@ export function buildChannelFromUrl(url: string, existingCount: number): Channel
     whitelistStatus: "active",
     syncStatus: "idle",
     lastSyncedAt: null,
+    authMode: "public",
+    analyticsConnectedAt: null,
   };
 }

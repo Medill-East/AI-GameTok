@@ -4,6 +4,15 @@ export type TranscriptStatus = "ready" | "missing" | "processing";
 export type ClipStatus = "draft" | "published" | "archived" | "needs_review";
 export type ChannelSyncStatus = "idle" | "running" | "error";
 export type WhitelistStatus = "active" | "paused";
+export type ChannelAuthMode = "public" | "authorized";
+export type AvailabilityStatus =
+  | "ok"
+  | "unavailable"
+  | "private"
+  | "deleted"
+  | "embed_blocked"
+  | "age_restricted";
+export type ClipSignalSource = "public_heuristic" | "analytics_retention";
 
 export type VideoChannelSlug =
   | "market"
@@ -31,6 +40,8 @@ export interface Channel {
   whitelistStatus: WhitelistStatus;
   syncStatus: ChannelSyncStatus;
   lastSyncedAt: string | null;
+  authMode: ChannelAuthMode;
+  analyticsConnectedAt?: string | null;
 }
 
 export interface Video {
@@ -45,6 +56,11 @@ export interface Video {
   thumbnailUrl: string;
   transcriptStatus: TranscriptStatus;
   publishedAt: string;
+  viewCount: number;
+  availabilityStatus: AvailabilityStatus;
+  playbackCheckedAt: string | null;
+  playbackErrorReason: string | null;
+  searchText: string;
 }
 
 export interface Clip {
@@ -63,6 +79,9 @@ export interface Clip {
   confidence: number;
   status: ClipStatus;
   editorPick: boolean;
+  signalSource: ClipSignalSource;
+  rankScore: number;
+  searchText: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -92,12 +111,32 @@ export interface AdminOverview {
   videos: (Video & { channel: Channel; clipCount: number })[];
   clips: FeedClip[];
   pendingClips: FeedClip[];
+  playbackIssues: (Video & { channel: Channel; clipCount: number })[];
   counts: {
     publishedClips: number;
     pendingClips: number;
     videos: number;
     channels: number;
+    playbackIssues: number;
   };
+}
+
+export interface SearchClipResult extends FeedClip {
+  resultType: "clip";
+  matchScore: number;
+}
+
+export interface SearchVideoResult extends Video {
+  resultType: "video";
+  matchScore: number;
+  channel: Channel;
+  clipCount: number;
+}
+
+export interface SearchResults {
+  clips: SearchClipResult[];
+  videos: SearchVideoResult[];
+  nextCursor: number | null;
 }
 
 export interface RemoteCatalogVideo {

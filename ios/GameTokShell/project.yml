@@ -1,0 +1,31 @@
+name: GameTokShell
+options:
+  minimumXcodeGenVersion: 2.38.0
+configs:
+  Debug: debug
+  Release: release
+settings:
+  base:
+    PRODUCT_BUNDLE_IDENTIFIER: com.gametok.shell
+    IPHONEOS_DEPLOYMENT_TARGET: 17.0
+    SWIFT_VERSION: 5.0
+targets:
+  GameTokShell:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    info:
+      path: Info.plist
+      properties:
+        CFBundleDisplayName: GameTok
+        UILaunchScreen: {}
+        UIRequiresFullScreen: false
+    sources:
+      - path: Sources
+    settings:
+      base:
+        INFOPLIST_KEY_LSApplicationQueriesSchemes:
+          - youtube
+          - http
+          - https
+        GAMETOK_BASE_URL: http://192.168.31.105:3010

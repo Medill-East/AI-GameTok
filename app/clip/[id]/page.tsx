@@ -47,6 +47,7 @@ export default async function ClipDetailPage({ params }: PageProps) {
             alt={clip.zhTitle}
             width={960}
             height={540}
+            unoptimized
             className="h-56 w-full rounded-[1.25rem] object-cover"
           />
           <div className="mt-4 space-y-3 text-sm text-black/65">

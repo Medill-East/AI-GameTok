@@ -1,12 +1,25 @@
+import { execFile, execFileSync } from "node:child_process";
+import { promisify } from "node:util";
+import { ProxyAgent } from "undici";
 import { buildYoutubeThumbnail } from "@/lib/youtube";
 import type {
+  AvailabilityStatus,
   Channel,
   Clip,
+  Language,
   StoreData,
   TranscriptSegment,
   Video,
   VideoChannelSlug,
 } from "@/lib/types";
+
+const execFileAsync = promisify(execFile);
+
+interface HttpTextResponse {
+  status: number;
+  ok: boolean;
+  text: string;
+}
 
 interface ExtractedVideo {
   sourceVideoId: string;
@@ -24,6 +37,8 @@ interface ChannelImportConfig {
   focusLabel: string;
   defaultSlug: VideoChannelSlug;
   minDurationSec: number;
+  language?: Language;
+  maxClips?: number;
   includeAny?: string[];
   excludeAny?: string[];
 }
@@ -40,6 +55,53 @@ interface WatchDetails {
   outline: TranscriptSegment[];
 }
 
+interface PlaybackHealth {
+  availabilityStatus: AvailabilityStatus;
+  playbackCheckedAt: string;
+  playbackErrorReason: string | null;
+}
+
+const POWERSHELL_FETCH_SCRIPT = `
+$ProgressPreference = 'SilentlyContinue'
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$headersObject = ConvertFrom-Json $env:CODEX_HTTP_HEADERS
+$headers = @{}
+if ($headersObject) {
+  $headersObject.PSObject.Properties | ForEach-Object {
+    $headers[$_.Name] = [string]$_.Value
+  }
+}
+$statusCode = 0
+$body = ''
+try {
+  $response = Invoke-WebRequest -UseBasicParsing -Uri $env:CODEX_HTTP_URL -Headers $headers
+  $statusCode = [int]$response.StatusCode
+  $body = [string]$response.Content
+} catch {
+  if ($_.Exception.Response) {
+    $statusCode = [int]$_.Exception.Response.StatusCode.value__
+    $stream = $_.Exception.Response.GetResponseStream()
+    if ($stream) {
+      $reader = New-Object System.IO.StreamReader($stream)
+      $body = $reader.ReadToEnd()
+      $reader.Close()
+    }
+  } else {
+    throw
+  }
+}
+$payload = @{ status = $statusCode; body = $body } | ConvertTo-Json -Compress -Depth 4
+[Console]::Out.Write($payload)
+`;
+
+const POWERSHELL_PROXY_SCRIPT = `
+$proxyEnabled = (Get-ItemProperty 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings').ProxyEnable
+$proxyServer = (Get-ItemProperty 'HKCU:\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings').ProxyServer
+if ($proxyEnabled -eq 1 -and $proxyServer) {
+  [Console]::Out.Write([string]$proxyServer)
+}
+`;
+
 const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
   ch_gdc: {
     sourceChannelId: "UC0JB7TSe49lg56u6qH8y_MQ",
@@ -50,6 +112,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     focusLabel: "\u6e38\u620f\u884c\u4e1a\u6f14\u8bb2\u4e0e\u65b9\u6cd5\u8bba",
     defaultSlug: "market",
     minDurationSec: 300,
+    maxClips: 5,
     includeAny: [
       "design",
       "marketing",
@@ -95,6 +158,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     focusLabel: "\u6e38\u620f\u8bbe\u8ba1\u62c6\u89e3\u4e0e\u65b9\u6cd5",
     defaultSlug: "dev_design",
     minDurationSec: 300,
+    maxClips: 5,
     excludeAny: [
       "trailer",
       "let's play",
@@ -110,7 +174,36 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     focusLabel: "\u5de5\u4f5c\u5ba4\u7eaa\u5f55\u7247\u4e0e\u5e55\u540e\u6d41\u7a0b",
     defaultSlug: "documentary",
     minDurationSec: 300,
+    maxClips: 5,
     excludeAny: ["teaser trailer", "announcing /noclip's brand new channel"],
+  },
+  ch_sakurai: {
+    sourceChannelId: "UCv1DvRY5PyHHt3KN9ghunuw",
+    handle: "@sora_sakurai_en",
+    videosUrl:
+      "https://www.youtube.com/channel/UCv1DvRY5PyHHt3KN9ghunuw/videos?view=0&sort=p&flow=grid",
+    description:
+      "Masahiro Sakurai's practical breakdowns on game design, controls, feel, production and communication.",
+    focusLabel: "\u6e38\u620f\u5236\u4f5c\u65b9\u6cd5\u4e0e\u8bbe\u8ba1\u539f\u5219",
+    defaultSlug: "dev_design",
+    minDurationSec: 90,
+    language: "en",
+    maxClips: 4,
+    excludeAny: ["shorts", "livestream", "trailer"],
+  },
+  ch_ai_games: {
+    sourceChannelId: "UCIb63jDtcb1FptUljjQYZRA",
+    handle: "@AIandGames",
+    videosUrl: "https://www.youtube.com/@AIandGames/videos?view=0&sort=p&flow=grid",
+    description:
+      "Deep dives into game AI, simulation systems, generative workflows and production tooling.",
+    focusLabel: "\u6e38\u620f AI \u4e0e\u5236\u4f5c\u5de5\u5177",
+    defaultSlug: "ai_tools",
+    minDurationSec: 240,
+    language: "en",
+    maxClips: 5,
+    includeAny: ["ai", "simulation", "npc", "director", "tool", "systems"],
+    excludeAny: ["livestream", "channel update", "trailer"],
   },
 };
 
@@ -163,6 +256,9 @@ const HIGH_SIGNAL_CHAPTER_PATTERNS = [
   "combat",
   "world",
   "route",
+  "controls",
+  "camera",
+  "ai",
 ];
 
 function walkForVideoRenderers(node: unknown, bucket: Array<Record<string, unknown>>) {
@@ -287,7 +383,8 @@ function inferChannelSlug(title: string, fallback: VideoChannelSlug): VideoChann
     normalized.includes("design") ||
     normalized.includes("level") ||
     normalized.includes("tutorial") ||
-    normalized.includes("prototype")
+    normalized.includes("prototype") ||
+    normalized.includes("controls")
   ) {
     return "dev_design";
   }
@@ -317,7 +414,8 @@ function inferChannelSlug(title: string, fallback: VideoChannelSlug): VideoChann
     normalized.includes("engine") ||
     normalized.includes("pipeline") ||
     normalized.includes("workflow") ||
-    normalized.includes("rendering")
+    normalized.includes("rendering") ||
+    normalized.includes("ai")
   ) {
     return "ai_tools";
   }
@@ -466,18 +564,134 @@ function isWeakChapterTitle(title: string) {
   return GENERIC_CHAPTER_PATTERNS.some((pattern) => pattern.test(normalized));
 }
 
+function toHeaderMap(headers?: HeadersInit) {
+  if (!headers) {
+    return {};
+  }
+
+  if (headers instanceof Headers) {
+    return Object.fromEntries(headers.entries());
+  }
+
+  if (Array.isArray(headers)) {
+    return Object.fromEntries(headers);
+  }
+
+  return Object.fromEntries(
+    Object.entries(headers).map(([key, value]) => [key, String(value)]),
+  );
+}
+
+function normalizeProxyUrl(rawProxy: string) {
+  if (!rawProxy) {
+    return null;
+  }
+
+  const primary = rawProxy
+    .split(";")
+    .map((entry) => entry.trim())
+    .find(Boolean);
+
+  if (!primary) {
+    return null;
+  }
+
+  const candidate = primary.includes("=") ? primary.split("=").at(-1)?.trim() : primary;
+
+  if (!candidate) {
+    return null;
+  }
+
+  return /^https?:\/\//i.test(candidate) ? candidate : `http://${candidate}`;
+}
+
+function resolveProxyUrl() {
+  const envProxy =
+    process.env.HTTPS_PROXY ??
+    process.env.https_proxy ??
+    process.env.HTTP_PROXY ??
+    process.env.http_proxy;
+
+  if (envProxy) {
+    return normalizeProxyUrl(envProxy);
+  }
+
+  if (process.platform !== "win32") {
+    return null;
+  }
+
+  try {
+    const stdout = execFileSync("powershell.exe", ["-NoProfile", "-Command", POWERSHELL_PROXY_SCRIPT], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+      windowsHide: true,
+    }).trim();
+    return normalizeProxyUrl(stdout);
+  } catch {
+    return null;
+  }
+}
+
+const proxyUrl = resolveProxyUrl();
+const proxyAgent = proxyUrl ? new ProxyAgent(proxyUrl) : null;
+
+async function fetchTextViaPowerShell(
+  url: string,
+  headers?: HeadersInit,
+): Promise<HttpTextResponse> {
+  const { stdout } = await execFileAsync(
+    "powershell.exe",
+    ["-NoProfile", "-Command", POWERSHELL_FETCH_SCRIPT],
+    {
+      env: {
+        ...process.env,
+        CODEX_HTTP_URL: url,
+        CODEX_HTTP_HEADERS: JSON.stringify(toHeaderMap(headers)),
+      },
+      maxBuffer: 16 * 1024 * 1024,
+      windowsHide: true,
+    },
+  );
+
+  const parsed = JSON.parse(stdout.trim()) as { status?: number; body?: string };
+  const status = Number(parsed.status ?? 0);
+
+  return {
+    status,
+    ok: status >= 200 && status < 300,
+    text: parsed.body ?? "",
+  };
+}
+
+async function requestText(url: string, init: RequestInit): Promise<HttpTextResponse> {
+  try {
+    const response = await fetch(url, {
+      ...init,
+      dispatcher: proxyAgent ?? undefined,
+    } as RequestInit & { dispatcher?: ProxyAgent });
+
+    return {
+      status: response.status,
+      ok: response.ok,
+      text: await response.text(),
+    };
+  } catch {
+    return fetchTextViaPowerShell(url, init.headers);
+  }
+}
+
 async function fetchTextWithRetry(url: string, init: RequestInit, attempts = 2) {
   let lastError: unknown;
 
   for (let attempt = 0; attempt < attempts; attempt += 1) {
     try {
-      const response = await fetch(url, init);
+      const response = await requestText(url, init);
 
-      if (!response.ok) {
+      if (!response.ok || !response.text) {
         throw new Error(`Request failed with status ${response.status}`);
       }
 
-      return await response.text();
+      return response.text;
     } catch (error) {
       lastError = error;
     }
@@ -548,7 +762,29 @@ function scoreFromViews(viewCount: number) {
   if (viewCount >= 250_000) {
     return 86;
   }
-  return 82;
+  if (viewCount >= 100_000) {
+    return 82;
+  }
+  return 76;
+}
+
+function scoreFromFreshness(publishedAt: string) {
+  const ageDays = Math.max(
+    0,
+    Math.floor((Date.now() - new Date(publishedAt).getTime()) / (1000 * 60 * 60 * 24)),
+  );
+
+  if (ageDays <= 30) {
+    return 8;
+  }
+  if (ageDays <= 180) {
+    return 5;
+  }
+  if (ageDays <= 365) {
+    return 3;
+  }
+
+  return 0;
 }
 
 function extractVideoTopicKeywords(videoTitle: string) {
@@ -573,6 +809,7 @@ function extractVideoTopicKeywords(videoTitle: string) {
           "part",
           "series",
           "iconic",
+          "sakurai",
         ].includes(word),
     );
 }
@@ -637,6 +874,7 @@ function pickChapterClips(
   chapters: ChapterMarker[],
   durationSec: number,
   videoTitle: string,
+  maxClips = 5,
 ) {
   const candidates = chapters
     .map((chapter) => ({
@@ -661,7 +899,7 @@ function pickChapterClips(
 
       return left.startSec - right.startSec;
     })
-    .slice(0, 3)
+    .slice(0, maxClips)
     .sort((left, right) => left.startSec - right.startSec);
 
   if (!candidates.length) {
@@ -707,21 +945,90 @@ function buildClipTranscriptNote(chapterTitle: string, videoTitle: string, index
   return `\u81ea\u52a8\u5207\u7247\u4f9d\u636e\uff1a\u89c6\u9891\u539f\u59cb\u7ae0\u8282\u300c${normalizedChapterTitle}\u300d\u3002`;
 }
 
-async function validateYoutubeVideo(videoId: string) {
-  const url =
-    `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+function classifyPlaybackStatus(status: string, reason: string | null): AvailabilityStatus {
+  const normalizedReason = reason?.toLowerCase() ?? "";
+
+  if (status === "LOGIN_REQUIRED" && normalizedReason.includes("age")) {
+    return "age_restricted";
+  }
+
+  if (normalizedReason.includes("private")) {
+    return "private";
+  }
+
+  if (normalizedReason.includes("deleted") || normalizedReason.includes("removed")) {
+    return "deleted";
+  }
+
+  if (status === "UNPLAYABLE" || status === "ERROR") {
+    return "unavailable";
+  }
+
+  return "embed_blocked";
+}
+
+async function validateYoutubePlayback(videoId: string): Promise<PlaybackHealth> {
+  const playbackCheckedAt = new Date().toISOString();
+  const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
   try {
-    const response = await fetch(url, {
+    const html = await fetchTextWithRetry(
+      watchUrl,
+      {
+        headers: {
+          "user-agent": "Mozilla/5.0",
+          "accept-language": "en-US,en;q=0.9",
+        },
+        cache: "no-store",
+      },
+      2,
+    );
+
+    const playabilityMatch = html.match(
+      /"playabilityStatus":\{"status":"([^"]+)"(?:.*?"reason":"([^"]+)")?/,
+    );
+
+    if (playabilityMatch && playabilityMatch[1] !== "OK") {
+      const reason = playabilityMatch[2]
+        ? JSON.parse(`"${playabilityMatch[2]}"`)
+        : "YouTube reported a playability restriction.";
+
+      return {
+        availabilityStatus: classifyPlaybackStatus(playabilityMatch[1], reason),
+        playbackCheckedAt,
+        playbackErrorReason: reason,
+      };
+    }
+
+    const oembedUrl =
+      `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=${videoId}&format=json`;
+    const oembedResponse = await requestText(oembedUrl, {
       headers: {
         "user-agent": "Mozilla/5.0",
       },
       cache: "no-store",
     });
 
-    return response.ok;
-  } catch {
-    return false;
+    if (oembedResponse.ok) {
+      return {
+        availabilityStatus: "ok",
+        playbackCheckedAt,
+        playbackErrorReason: null,
+      };
+    }
+
+    return {
+      availabilityStatus: "embed_blocked",
+      playbackCheckedAt,
+      playbackErrorReason: `oEmbed responded with ${oembedResponse.status}.`,
+    };
+  } catch (error) {
+    return {
+      availabilityStatus: "unavailable",
+      playbackCheckedAt,
+      playbackErrorReason:
+        error instanceof Error ? error.message : "Failed to validate playback.",
+    };
   }
 }
 
@@ -808,10 +1115,6 @@ async function selectVideosForImport(channelId: string, limit: number) {
       continue;
     }
 
-    if (!(await validateYoutubeVideo(item.sourceVideoId))) {
-      continue;
-    }
-
     selected.push(item);
 
     if (selected.length >= limit) {
@@ -822,7 +1125,12 @@ async function selectVideosForImport(channelId: string, limit: number) {
   return selected;
 }
 
-function toVideoRecord(channelId: string, item: ExtractedVideo, watchDetails: WatchDetails): Video {
+function toVideoRecord(
+  channelId: string,
+  item: ExtractedVideo,
+  watchDetails: WatchDetails,
+  playbackHealth: PlaybackHealth,
+): Video {
   return {
     id: `video_${channelId}_${item.sourceVideoId}`,
     channelId,
@@ -837,14 +1145,18 @@ function toVideoRecord(channelId: string, item: ExtractedVideo, watchDetails: Wa
     thumbnailUrl: buildYoutubeThumbnail(item.sourceVideoId),
     transcriptStatus: watchDetails.outline.length ? "ready" : "missing",
     publishedAt: item.publishedAt,
+    viewCount: item.viewCount,
+    availabilityStatus: playbackHealth.availabilityStatus,
+    playbackCheckedAt: playbackHealth.playbackCheckedAt,
+    playbackErrorReason: playbackHealth.playbackErrorReason,
+    searchText: "",
   };
 }
 
 function buildClipRecords(
   video: Video,
-  channelName: string,
-  focusLabel: string,
-  defaultSlug: VideoChannelSlug,
+  channel: Channel,
+  config: ChannelImportConfig,
   item: ExtractedVideo,
   watchDetails: WatchDetails,
 ) {
@@ -853,16 +1165,22 @@ function buildClipRecords(
     watchDetails.chapters,
     video.durationSec,
     video.title,
+    config.maxClips ?? 5,
   );
-  const baseScore = scoreFromViews(item.viewCount);
+  const baseScore = scoreFromViews(item.viewCount) + scoreFromFreshness(item.publishedAt);
+  const defaultStatus =
+    watchDetails.outline.length >= 1 && video.availabilityStatus === "ok"
+      ? "published"
+      : "needs_review";
 
   return chapterSlices.map((chapter, index) => {
     const channelSlug = inferChannelSlug(
       `${video.title} ${chapter.title}`,
-      defaultSlug,
+      config.defaultSlug,
     );
     const chapterTitle = sanitizeChapterTitle(chapter.title) || video.title;
-    const clipTitle = buildClipHeadline(channelName, video.title, chapterTitle, index);
+    const clipTitle = buildClipHeadline(channel.name, video.title, chapterTitle, index);
+    const rankScore = Math.max(70, baseScore - index * 3);
 
     return {
       id: `clip_${video.sourceVideoId}_${index}`,
@@ -871,15 +1189,18 @@ function buildClipRecords(
       startSec: chapter.startSec,
       endSec: chapter.endSec,
       zhTitle: clipTitle,
-      zhSummary: buildSummary(channelName, video.title, chapterTitle, leadParagraph),
-      zhTakeaways: buildTakeaways(focusLabel, chapterTitle, video.title),
-      tags: [channelName, focusLabel, chapterTitle],
+      zhSummary: buildSummary(channel.name, video.title, chapterTitle, leadParagraph),
+      zhTakeaways: buildTakeaways(config.focusLabel, chapterTitle, video.title),
+      tags: [channel.name, config.focusLabel, chapterTitle].filter(Boolean),
       transcriptExcerpt: chapterTitle,
       transcriptZh: buildClipTranscriptNote(chapterTitle, video.title, index),
-      score: Math.max(80, baseScore - index * 2),
-      confidence: watchDetails.chapters.length ? 0.94 : 0.82,
-      status: "published" as const,
+      score: Math.max(70, baseScore - index * 2),
+      confidence: watchDetails.chapters.length ? 0.94 : 0.78,
+      status: defaultStatus,
       editorPick: index === 0,
+      signalSource: channel.authMode === "authorized" ? "analytics_retention" : "public_heuristic",
+      rankScore,
+      searchText: "",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     } satisfies Clip;
@@ -914,11 +1235,138 @@ function syncManagedChannelMetadata(channel: Channel, config: ChannelImportConfi
   channel.sourceChannelId = config.sourceChannelId;
   channel.handle = config.handle;
   channel.description = config.description;
+  channel.language = config.language ?? channel.language ?? "en";
+  channel.authMode = channel.authMode ?? "public";
+}
+
+function buildManagedChannelRecord(id: string, config: ChannelImportConfig): Channel {
+  const styles: Record<string, { themeColor: string; avatarUrl: string; name: string }> = {
+    ch_gdc: {
+      themeColor: "#ff6b2c",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=400&q=80",
+      name: "GDC",
+    },
+    ch_gmtk: {
+      themeColor: "#0f6b4d",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80",
+      name: "Game Maker's Toolkit",
+    },
+    ch_noclip: {
+      themeColor: "#243c5a",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1511882150382-421056c89033?auto=format&fit=crop&w=400&q=80",
+      name: "Noclip",
+    },
+    ch_sakurai: {
+      themeColor: "#c44d2d",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=400&q=80",
+      name: "Masahiro Sakurai",
+    },
+    ch_ai_games: {
+      themeColor: "#4758bf",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80",
+      name: "AI and Games",
+    },
+  };
+
+  const style = styles[id];
+
+  return {
+    id,
+    sourceType: "youtube",
+    sourceChannelId: config.sourceChannelId,
+    name: style?.name ?? config.handle.replace(/^@/, ""),
+    handle: config.handle,
+    language: config.language ?? "en",
+    description: config.description,
+    avatarUrl:
+      style?.avatarUrl ??
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=400&q=80",
+    themeColor: style?.themeColor ?? "#2a7f62",
+    whitelistStatus: "active",
+    syncStatus: "idle",
+    lastSyncedAt: null,
+    authMode: "public",
+    analyticsConnectedAt: null,
+  };
+}
+
+function ensureManagedChannels(data: StoreData) {
+  Object.entries(CHANNEL_IMPORT_SOURCES).forEach(([id, config]) => {
+    if (data.channels.some((channel) => channel.id === id)) {
+      return;
+    }
+
+    data.channels.push(buildManagedChannelRecord(id, config));
+  });
+}
+
+export function getManagedChannelConfigs() {
+  return CHANNEL_IMPORT_SOURCES;
+}
+
+export async function recheckVideoPlayback(videoId: string) {
+  return validateYoutubePlayback(videoId);
+}
+
+export async function rebuildVideoFromSource(data: StoreData, videoId: string) {
+  const next: StoreData = structuredClone(data);
+  const video = next.videos.find((item) => item.id === videoId);
+
+  if (!video) {
+    throw new Error("Video not found");
+  }
+
+  const channel = next.channels.find((item) => item.id === video.channelId);
+
+  if (!channel) {
+    throw new Error("Channel not found");
+  }
+
+  const config = CHANNEL_IMPORT_SOURCES[channel.id];
+
+  if (!config) {
+    throw new Error("Managed channel config not found");
+  }
+
+  const watchDetails = await fetchWatchDetails(video.sourceVideoId, video.durationSec);
+  const playbackHealth = await validateYoutubePlayback(video.sourceVideoId);
+  const item: ExtractedVideo = {
+    sourceVideoId: video.sourceVideoId,
+    title: video.title,
+    durationSec: video.durationSec,
+    publishedAt: video.publishedAt,
+    viewCount: video.viewCount,
+  };
+  const nextVideo = toVideoRecord(channel.id, item, watchDetails, playbackHealth);
+  const nextClips =
+    playbackHealth.availabilityStatus === "ok"
+      ? buildClipRecords(nextVideo, channel, config, item, watchDetails)
+      : [];
+
+  next.videos = next.videos.map((item) => (item.id === videoId ? nextVideo : item));
+  next.clips = [...next.clips.filter((clip) => clip.videoId !== videoId), ...nextClips];
+  next.transcripts[nextVideo.id] = watchDetails.outline;
+
+  return {
+    next,
+    summary: {
+      importedVideos: 1,
+      importedClips: nextClips.length,
+      skippedVideos: 0,
+      removedVideos: 0,
+      removedClips: 0,
+    },
+  };
 }
 
 export async function importPopularVideosFromChannels(
   data: StoreData,
-  limitPerChannel = 24,
+  limitPerChannel = 48,
 ) {
   const next: StoreData = structuredClone(data);
   const summary = {
@@ -928,6 +1376,8 @@ export async function importPopularVideosFromChannels(
     removedVideos: 0,
     removedClips: 0,
   };
+
+  ensureManagedChannels(next);
 
   for (const channel of next.channels) {
     if (channel.whitelistStatus !== "active") {
@@ -950,15 +1400,12 @@ export async function importPopularVideosFromChannels(
     for (const item of items) {
       try {
         const watchDetails = await fetchWatchDetails(item.sourceVideoId, item.durationSec);
-        const video = toVideoRecord(channel.id, item, watchDetails);
-        const clips = buildClipRecords(
-          video,
-          channel.name,
-          config.focusLabel,
-          config.defaultSlug,
-          item,
-          watchDetails,
-        );
+        const playbackHealth = await validateYoutubePlayback(item.sourceVideoId);
+        const video = toVideoRecord(channel.id, item, watchDetails, playbackHealth);
+        const clips =
+          playbackHealth.availabilityStatus === "ok"
+            ? buildClipRecords(video, channel, config, item, watchDetails)
+            : [];
 
         next.videos.push(video);
         next.clips.push(...clips);
@@ -984,7 +1431,7 @@ export async function importPopularVideosFromChannels(
       return left.editorPick ? -1 : 1;
     }
 
-    return right.score - left.score;
+    return right.rankScore - left.rankScore;
   });
 
   return { next, summary };

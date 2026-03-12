@@ -106,6 +106,12 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
             </h1>
           </div>
           <nav className="pointer-events-auto flex items-center gap-2">
+            <Link
+              className="min-h-10 rounded-full border border-white/20 px-3 py-2 text-xs md:px-4 md:text-sm"
+              href="/search"
+            >
+              {"\u641c\u7d22"}
+            </Link>
             <button
               type="button"
               onClick={toggleSound}
@@ -171,6 +177,7 @@ export function ClipFeed({ clips, currentChannel }: ClipFeedProps) {
                 src={clip.video.thumbnailUrl}
                 alt={clip.zhTitle}
                 fill
+                unoptimized
                 className="absolute inset-0 h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/85" />

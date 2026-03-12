@@ -70,6 +70,7 @@ export function SavedClips() {
             alt={clip.zhTitle}
             width={960}
             height={540}
+            unoptimized
             className="h-48 w-full rounded-[1.5rem] object-cover"
           />
           <div className="mt-4">

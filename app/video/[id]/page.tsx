@@ -27,20 +27,32 @@ export default async function VideoPage({ params, searchParams }: PageProps) {
           <div className="eyebrow">Continue Watching</div>
           <h1 className="display-font text-4xl font-bold">{video.zhTitle}</h1>
           <p className="text-sm leading-7 text-black/72">{video.description}</p>
-          <div className="aspect-video overflow-hidden rounded-[1.75rem] border border-black/10 bg-black">
-            <iframe
-              className="h-full w-full"
-              src={buildYoutubeEmbedUrl(video.sourceVideoId, {
-                autoplay: false,
-                mute: false,
-                controls: true,
-                startSec: resumeFrom,
-              })}
-              title={video.zhTitle}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </div>
+          {video.availabilityStatus === "ok" ? (
+            <div className="aspect-video overflow-hidden rounded-[1.75rem] border border-black/10 bg-black">
+              <iframe
+                className="h-full w-full"
+                src={buildYoutubeEmbedUrl(video.sourceVideoId, {
+                  autoplay: false,
+                  mute: false,
+                  controls: true,
+                  startSec: resumeFrom,
+                })}
+                title={video.zhTitle}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="rounded-[1.75rem] border border-black/10 bg-white/80 p-6 text-sm leading-7 text-black/70">
+              <p className="font-semibold text-black">
+                {"\u8fd9\u6761\u89c6\u9891\u5f53\u524d\u4e0d\u9002\u5408\u7ad9\u5185\u64ad\u653e\u3002"}
+              </p>
+              <p className="mt-3">
+                {video.playbackErrorReason ??
+                  "\u53ef\u80fd\u662f\u5d4c\u5165\u53d7\u9650\u3001\u9690\u79c1\u8bbe\u7f6e\u53d8\u66f4\u6216 YouTube \u53ef\u64ad\u6027\u72b6\u6001\u53d1\u751f\u4e86\u53d8\u5316\u3002"}
+              </p>
+            </div>
+          )}
           <div className="flex flex-wrap gap-3">
             <a
               href={buildYoutubeWatchUrl(video.sourceVideoId, resumeFrom)}

@@ -3,7 +3,7 @@ import { buildChannelFromUrl } from "@/lib/sync";
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { url?: string };
+    const body = (await request.json()) as { url?: string; authMode?: "public" | "authorized" };
 
     if (!body.url) {
       return Response.json({ error: "\u7f3a\u5c11\u9891\u9053 URL\u3002" }, { status: 400 });
@@ -11,6 +11,7 @@ export async function POST(request: Request) {
 
     const current = await readStore();
     const channel = buildChannelFromUrl(body.url, current.channels.length);
+    channel.authMode = body.authMode ?? "public";
     await addChannel(channel);
 
     return Response.json({ ok: true, channel });
