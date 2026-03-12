@@ -50,14 +50,14 @@ export function SaveButton({
         setSaved(next.has(clipId));
       }}
       className={cn(
-        "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border px-3 py-2 text-sm font-semibold transition lg:px-4",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border px-3 py-2 text-sm font-semibold transition lg:px-4",
         saved
           ? "border-[var(--accent)] bg-[var(--accent)] text-white"
           : "border-white/20 bg-black/25 text-white hover:bg-black/40",
         className,
       )}
     >
-      {saved ? <BookmarkFilledIcon className="h-4 w-4" /> : <BookmarkIcon className="h-4 w-4" />}
+      {saved ? <BookmarkFilledIcon className="h-5 w-5" /> : <BookmarkIcon className="h-5 w-5" />}
       <span className={iconOnlyMobile ? "hidden md:inline" : ""}>
         {saved ? "\u5df2\u6536\u85cf" : "\u6536\u85cf"}
       </span>

@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useSyncExternalStore, useState } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import {
   BookmarkIcon,
+  GlobeIcon,
+  MenuIcon,
   PlayIcon,
   SearchIcon,
   SparkGridIcon,
@@ -14,11 +16,13 @@ import {
 import { ClipPlayer, type ClipPlayerStatus } from "@/components/clip-player";
 import { SaveButton } from "@/components/save-button";
 import { ShareButton } from "@/components/share-button";
+import { useDisplayLanguage } from "@/components/use-display-language";
 import {
   APP_NAME,
   CHANNEL_LABELS,
   PLAYER_SOUND_KEY,
 } from "@/lib/constants";
+import { getChannelLabel, getClipSummary, getClipTitle } from "@/lib/display";
 import type { FeedClip, FeedPage, VideoChannelSlug } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { formatDuration } from "@/lib/youtube";
@@ -73,6 +77,44 @@ export function ClipFeed({
   initialNextCursor,
   currentChannel,
 }: ClipFeedProps) {
+  const { language, toggleLanguage } = useDisplayLanguage();
+  const copy = useMemo(
+    () =>
+      language === "en"
+        ? {
+            search: "Search",
+            soundOn: "Sound on",
+            soundOff: "Sound off",
+            language: "中文",
+            menu: "Browse",
+            saved: "Saved",
+            admin: "Admin",
+            all: "All",
+            continueWatching: "Continue",
+            loadingMore: "Loading more",
+            autoplayBlocked: "Safari blocked autoplay. Tap the player once to continue.",
+            categories: "Categories",
+            library: "Library",
+            duration: "clip",
+          }
+        : {
+            search: "\u641c\u7d22",
+            soundOn: "\u58f0\u97f3\u5f00",
+            soundOff: "\u58f0\u97f3\u5173",
+            language: "EN",
+            menu: "\u9891\u9053",
+            saved: "\u6536\u85cf\u5939",
+            admin: "\u540e\u53f0",
+            all: "\u5168\u90e8",
+            continueWatching: "\u7ee7\u7eed\u770b",
+            loadingMore: "\u7ee7\u7eed\u52a0\u8f7d",
+            autoplayBlocked: "Safari \u7981\u6b62\u4e86\u81ea\u52a8\u64ad\u653e\uff0c\u70b9\u4e00\u4e0b\u89c6\u9891\u53ef\u7ee7\u7eed\u3002",
+            categories: "\u9891\u9053\u5206\u7c7b",
+            library: "\u5185\u5bb9\u5e93",
+            duration: "\u5207\u7247",
+          },
+    [language],
+  );
   const initialItems = useMemo(() => materializeClips(initialClips), [initialClips]);
   const [feedItems, setFeedItems] = useState<RenderedFeedClip[]>(initialItems);
   const [activeKey, setActiveKey] = useState(initialItems[0]?.renderKey ?? "");
@@ -80,6 +122,7 @@ export function ClipFeed({
   const [nextCursor, setNextCursor] = useState<number | null>(initialNextCursor);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [seenClipIds, setSeenClipIds] = useState<string[]>(initialClips.map((clip) => clip.id));
+  const [menuOpen, setMenuOpen] = useState(false);
   const soundEnabled = useSyncExternalStore(
     subscribeToSoundPreference,
     getSoundPreferenceSnapshot,
@@ -100,6 +143,7 @@ export function ClipFeed({
     setPlaybackStatus("idle");
     setNextCursor(initialNextCursor);
     setSeenClipIds(initialClips.map((clip) => clip.id));
+    setMenuOpen(false);
   }, [currentChannel, initialClips, initialItems, initialNextCursor]);
 
   useEffect(() => {
@@ -214,92 +258,168 @@ export function ClipFeed({
 
   return (
     <div className="relative h-[100dvh] overflow-hidden bg-[#111] md:rounded-[2rem] md:border md:border-white/50 md:shadow-[0_30px_120px_rgba(17,34,24,0.25)]">
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-30 bg-gradient-to-b from-black/82 via-black/28 to-transparent px-3 pb-4 pt-[calc(env(safe-area-inset-top)+0.55rem)] text-white md:px-5 md:pb-8 md:pt-5">
-        <div className="flex items-center justify-between gap-3">
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-40 bg-gradient-to-b from-black/86 via-black/38 to-transparent px-3 pb-4 pt-[calc(env(safe-area-inset-top)+0.55rem)] text-white md:px-5 md:pb-8 md:pt-5">
+        <div className="flex items-center justify-end gap-2 md:justify-between md:gap-3">
           <div className="hidden min-w-0 md:block">
             <h1 className="display-font text-lg font-bold md:mt-1 md:text-2xl">
               {APP_NAME}
             </h1>
           </div>
-          <nav className="pointer-events-auto ml-auto flex items-center gap-2">
+          <nav className="pointer-events-auto flex items-center gap-2">
             <Link
-              aria-label={"\u641c\u7d22"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white transition hover:bg-black/35 md:w-auto md:gap-2 md:px-4"
+              aria-label={copy.search}
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:w-auto md:gap-2 md:px-4"
               href="/search"
-              title={"\u641c\u7d22"}
+              title={copy.search}
             >
-              <SearchIcon className="h-4 w-4" />
-              <span className="hidden md:inline">{`\u641c\u7d22`}</span>
+              <SearchIcon className="h-5 w-5" />
+              <span className="hidden md:inline">{copy.search}</span>
             </Link>
             <button
               type="button"
-              aria-label={soundEnabled ? "\u5173\u95ed\u58f0\u97f3" : "\u6253\u5f00\u58f0\u97f3"}
+              aria-label={soundEnabled ? copy.soundOn : copy.soundOff}
               onClick={toggleSound}
               className={cn(
-                "pointer-events-auto inline-flex h-10 w-10 items-center justify-center rounded-full transition md:w-auto md:gap-2 md:px-4",
+                "pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full transition md:w-auto md:gap-2 md:px-4",
                 soundEnabled
                   ? "bg-[var(--accent)] text-white"
-                  : "border border-white/20 bg-black/20 text-white hover:bg-black/35",
+                  : "border border-white/20 bg-black/28 text-white hover:bg-black/40",
               )}
-              title={soundEnabled ? "\u58f0\u97f3\u5f00" : "\u58f0\u97f3\u5173"}
+              title={soundEnabled ? copy.soundOn : copy.soundOff}
             >
               {soundEnabled ? (
-                <VolumeOnIcon className="h-4 w-4" />
+                <VolumeOnIcon className="h-5 w-5" />
               ) : (
-                <VolumeOffIcon className="h-4 w-4" />
+                <VolumeOffIcon className="h-5 w-5" />
               )}
               <span className="hidden md:inline">
-                {soundEnabled ? "\u58f0\u97f3\u5f00" : "\u58f0\u97f3\u5173"}
+                {soundEnabled ? copy.soundOn : copy.soundOff}
               </span>
             </button>
-            <Link
-              aria-label={"\u6536\u85cf\u5939"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white transition hover:bg-black/35 md:w-auto md:gap-2 md:px-4"
-              href="/saved"
-              title={"\u6536\u85cf\u5939"}
+            <button
+              type="button"
+              aria-label={copy.language}
+              onClick={toggleLanguage}
+              className="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:w-auto md:gap-2 md:px-4"
+              title={copy.language}
             >
-              <BookmarkIcon className="h-4 w-4" />
-              <span className="hidden md:inline">{`\u6536\u85cf\u5939`}</span>
+              <GlobeIcon className="h-5 w-5" />
+              <span className="hidden md:inline">{copy.language}</span>
+            </button>
+            <button
+              type="button"
+              aria-label={copy.menu}
+              onClick={() => setMenuOpen((current) => !current)}
+              className="pointer-events-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:hidden"
+              title={copy.menu}
+            >
+              <MenuIcon className="h-5 w-5" />
+            </button>
+            <Link
+              aria-label={copy.saved}
+              className="hidden h-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:inline-flex md:gap-2 md:px-4"
+              href="/saved"
+              title={copy.saved}
+            >
+              <BookmarkIcon className="h-5 w-5" />
+              <span>{copy.saved}</span>
             </Link>
             <Link
-              aria-label={"\u540e\u53f0"}
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/20 text-white transition hover:bg-black/35 md:w-auto md:gap-2 md:px-4"
+              aria-label={copy.admin}
+              className="hidden h-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:inline-flex md:gap-2 md:px-4"
               href="/admin"
-              title={"\u540e\u53f0"}
+              title={copy.admin}
             >
-              <SparkGridIcon className="h-4 w-4" />
-              <span className="hidden md:inline">{`\u540e\u53f0`}</span>
+              <SparkGridIcon className="h-5 w-5" />
+              <span>{copy.admin}</span>
             </Link>
           </nav>
         </div>
-        <div className="pointer-events-auto mt-3 flex gap-2 overflow-x-auto hide-scrollbar md:mt-4">
+        <div className="pointer-events-auto mt-4 hidden gap-2 overflow-x-auto hide-scrollbar md:flex">
           <Link
             href="/"
             className={cn(
-              "rounded-full px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition md:px-4 md:py-2 md:text-sm",
+              "rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition",
               !currentChannel ? "bg-white !text-black" : "bg-white/12 text-white/86",
             )}
           >
-            {"\u5168\u90e8"}
+            {copy.all}
           </Link>
-          {channelEntries.map(([slug, label]) => (
+          {channelEntries.map(([slug]) => (
             <Link
               key={slug}
               href={`/channel/${slug}`}
               className={cn(
-                "rounded-full px-3 py-1.5 text-[11px] font-semibold whitespace-nowrap transition md:px-4 md:py-2 md:text-sm",
+                "rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition",
                 currentChannel === slug ? "bg-white !text-black" : "bg-white/12 text-white/86",
               )}
             >
-              {label}
+              {getChannelLabel(slug, language)}
             </Link>
           ))}
         </div>
       </div>
 
+      {menuOpen ? (
+        <>
+          <button
+            type="button"
+            aria-label="Close menu"
+            className="absolute inset-0 z-30 bg-black/35 md:hidden"
+            onClick={() => setMenuOpen(false)}
+          />
+          <div className="absolute right-3 top-[calc(env(safe-area-inset-top)+3.8rem)] z-40 w-[min(18rem,calc(100vw-1.5rem))] rounded-[1.5rem] border border-white/12 bg-black/88 p-3 text-white shadow-2xl md:hidden">
+            <div className="px-2 pb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/52">
+              {copy.categories}
+            </div>
+            <div className="space-y-1">
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className={cn(
+                  "flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-semibold",
+                  !currentChannel ? "bg-white text-black" : "bg-white/8 text-white",
+                )}
+              >
+                <span>{copy.all}</span>
+              </Link>
+              {channelEntries.map(([slug]) => (
+                <Link
+                  key={slug}
+                  href={`/channel/${slug}`}
+                  onClick={() => setMenuOpen(false)}
+                  className={cn(
+                    "flex items-center justify-between rounded-2xl px-3 py-3 text-sm font-semibold",
+                    currentChannel === slug ? "bg-white text-black" : "bg-white/8 text-white",
+                  )}
+                >
+                  <span>{getChannelLabel(slug, language)}</span>
+                </Link>
+              ))}
+            </div>
+            <div className="mt-3 border-t border-white/10 pt-3">
+              <div className="px-2 pb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/52">
+                {copy.library}
+              </div>
+              <div className="space-y-1">
+                <Link
+                  href="/saved"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center rounded-2xl bg-white/8 px-3 py-3 text-sm font-semibold text-white"
+                >
+                  {copy.saved}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </>
+      ) : null}
+
       <div className="hide-scrollbar h-full snap-y snap-mandatory overflow-y-auto">
         {feedItems.map((clip) => {
           const isActive = clip.renderKey === activeKey;
+          const title = getClipTitle(clip, language, clip.video.title);
+          const summary = getClipSummary(clip, language, clip.video.description);
 
           return (
             <article
@@ -309,14 +429,15 @@ export function ClipFeed({
             >
               <Image
                 src={clip.video.thumbnailUrl}
-                alt={clip.zhTitle}
+                alt={title}
                 fill
                 unoptimized
                 className="absolute inset-0 h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/16 via-black/22 to-black/82" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,107,44,0.16),transparent_24rem)]" />
-              <div className="absolute inset-x-0 top-[11svh] z-10 h-[61svh] overflow-hidden bg-black shadow-2xl md:left-1/2 md:top-1/2 md:h-[52vh] md:w-[calc(100%-2rem)] md:max-w-5xl md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[2rem] md:border md:border-white/12 md:bg-black/55">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/18 via-black/18 to-black/82" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,107,44,0.14),transparent_24rem)]" />
+
+              <div className="absolute inset-x-0 top-[calc(env(safe-area-inset-top)+4rem)] z-10 h-[55svh] overflow-hidden bg-black shadow-2xl md:left-1/2 md:top-1/2 md:h-[52vh] md:w-[calc(100%-2rem)] md:max-w-5xl md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-[2rem] md:border md:border-white/12 md:bg-black/55">
                 {isActive ? (
                   <ClipPlayer
                     videoId={clip.video.sourceVideoId}
@@ -335,56 +456,56 @@ export function ClipFeed({
                 )}
               </div>
 
-              <div className="absolute inset-x-0 bottom-0 z-20 px-3 pb-[calc(env(safe-area-inset-bottom)+0.85rem)] pt-20 text-white md:px-5 md:pb-7 md:pt-36">
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38svh] bg-gradient-to-t from-black via-black/78 to-transparent md:h-[28rem]" />
-                <div className="relative max-w-[calc(100%-5rem)] md:max-w-3xl">
+              <div className="absolute inset-x-0 bottom-0 z-20 px-4 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-16 text-white md:px-5 md:pb-7 md:pt-36">
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[30svh] bg-gradient-to-t from-black via-black/84 to-transparent md:h-[28rem]" />
+                <div className="relative min-h-[8.5rem] pr-20 md:min-h-[10rem] md:max-w-3xl md:pr-0">
                   <div className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/68 md:text-xs">
-                    <span>{clip.channel.name}</span>
+                    <span className="truncate">{clip.channel.name}</span>
                     <span>/</span>
-                    <span>{CHANNEL_LABELS[clip.channelSlug]}</span>
+                    <span>{getChannelLabel(clip.channelSlug, language)}</span>
                     <span>/</span>
-                    <span>{formatDuration(clip.endSec - clip.startSec)}</span>
+                    <span>{formatDuration(clip.endSec - clip.startSec)} {copy.duration}</span>
                   </div>
                   <Link href={`/clip/${clip.id}`} className="mt-2 block">
-                    <h2 className="display-font line-clamp-1 text-[1.08rem] font-bold leading-tight md:line-clamp-2 md:text-3xl">
-                      {clip.zhTitle}
+                    <h2 className="display-font line-clamp-1 text-[1rem] font-bold leading-tight md:line-clamp-2 md:text-3xl">
+                      {title}
                     </h2>
-                    {clip.zhSummary.trim().length >= 40 ? (
-                      <p className="mt-2 line-clamp-2 max-w-xl text-[13px] leading-5 text-white/82 md:text-base md:leading-7">
-                        {clip.zhSummary}
+                    {summary.trim().length >= 20 ? (
+                      <p className="mt-2 line-clamp-2 max-w-xl text-[12px] leading-5 text-white/82 md:text-base md:leading-7">
+                        {summary}
                       </p>
                     ) : null}
                   </Link>
                   {playbackStatus === "blocked" && isActive ? (
                     <p className="mt-2 text-[11px] text-white/64 md:text-xs">
-                      Safari blocked autoplay. Tap the player once to continue.
+                      {copy.autoplayBlocked}
                     </p>
                   ) : null}
                 </div>
 
-                <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+0.85rem)] right-3 z-30 flex flex-col gap-2.5 md:bottom-7 md:right-5">
+                <div className="absolute bottom-[calc(env(safe-area-inset-bottom)+1rem)] right-4 z-30 flex flex-col gap-3 md:bottom-7 md:right-5">
                   <Link
                     href={`/video/${clip.video.id}?from=${clip.id}`}
-                    aria-label={"\u7ee7\u7eed\u770b"}
-                    className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-lg transition hover:brightness-110 md:w-auto md:gap-2 md:px-4"
-                    title={"\u7ee7\u7eed\u770b"}
+                    aria-label={copy.continueWatching}
+                    className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent)] text-white shadow-lg transition hover:brightness-110 md:w-auto md:gap-2 md:px-4"
+                    title={copy.continueWatching}
                   >
-                    <PlayIcon className="h-4 w-4" />
-                    <span className="hidden md:inline">{`\u7ee7\u7eed\u770b`}</span>
+                    <PlayIcon className="h-5 w-5" />
+                    <span className="hidden md:inline">{copy.continueWatching}</span>
                   </Link>
-                  <SaveButton clipId={clip.id} iconOnlyMobile className="h-11 w-11 px-0 md:h-auto md:w-auto md:px-4" />
+                  <SaveButton clipId={clip.id} iconOnlyMobile className="h-12 w-12 px-0 md:h-auto md:w-auto md:px-4" />
                   <ShareButton
-                    title={clip.zhTitle}
+                    title={title}
                     url={`/clip/${clip.id}`}
                     iconOnlyMobile
-                    className="h-11 w-11 px-0 md:h-auto md:w-auto md:px-4"
+                    className="h-12 w-12 px-0 md:h-auto md:w-auto md:px-4"
                   />
                 </div>
 
                 {isLoadingMore && isActive && feedItems.length - activeIndex <= 2 ? (
-                  <div className="absolute inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+0.4rem)] flex justify-center md:bottom-3">
+                  <div className="absolute inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+0.3rem)] flex justify-center md:bottom-3">
                     <span className="rounded-full border border-white/12 bg-black/35 px-3 py-1 text-[10px] font-semibold tracking-[0.18em] text-white/72">
-                      LOADING MORE
+                      {copy.loadingMore}
                     </span>
                   </div>
                 ) : null}

@@ -1,5 +1,6 @@
 export type SourceType = "youtube";
 export type Language = "en" | "zh" | "mixed";
+export type DisplayLanguage = "zh" | "en";
 export type TranscriptStatus = "ready" | "missing" | "processing";
 export type ClipStatus = "draft" | "published" | "archived" | "needs_review";
 export type ChannelSyncStatus = "idle" | "running" | "error";
@@ -69,7 +70,9 @@ export interface Clip {
   channelSlug: VideoChannelSlug;
   startSec: number;
   endSec: number;
+  enTitle: string;
   zhTitle: string;
+  enSummary: string;
   zhSummary: string;
   zhTakeaways: string[];
   tags: string[];
@@ -163,7 +166,9 @@ export interface RemoteCatalogVideo {
       | "channelSlug"
       | "startSec"
       | "endSec"
+      | "enTitle"
       | "zhTitle"
+      | "enSummary"
       | "zhSummary"
       | "zhTakeaways"
       | "tags"

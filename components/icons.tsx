@@ -91,3 +91,24 @@ export function SparkGridIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function GlobeIcon(props: IconProps) {
+  return (
+    <svg {...iconDefaults(props)}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M3.8 12H20.2" />
+      <path d="M12 3.5C14.6 5.8 16 8.8 16 12C16 15.2 14.6 18.2 12 20.5" />
+      <path d="M12 3.5C9.4 5.8 8 8.8 8 12C8 15.2 9.4 18.2 12 20.5" />
+    </svg>
+  );
+}
+
+export function MenuIcon(props: IconProps) {
+  return (
+    <svg {...iconDefaults(props)}>
+      <path d="M5 7H19" />
+      <path d="M5 12H19" />
+      <path d="M5 17H19" />
+    </svg>
+  );
+}

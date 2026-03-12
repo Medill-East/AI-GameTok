@@ -3,6 +3,7 @@ import type { VideoChannelSlug } from "@/lib/types";
 export const APP_NAME = "GameTok";
 export const SAVED_CLIPS_KEY = "gametok:saved-clips";
 export const PLAYER_SOUND_KEY = "gametok:player-sound";
+export const LANGUAGE_PREFERENCE_KEY = "gametok:language";
 export const AUTO_PUBLISH_SCORE = 80;
 export const AUTO_PUBLISH_CONFIDENCE = 0.78;
 
@@ -12,6 +13,14 @@ export const CHANNEL_LABELS: Record<VideoChannelSlug, string> = {
   dev_design: "\u7814\u53d1\u8bbe\u8ba1",
   documentary: "\u7eaa\u5f55/\u8bbf\u8c08",
   ai_tools: "AI/\u5de5\u5177",
+};
+
+export const CHANNEL_LABELS_EN: Record<VideoChannelSlug, string> = {
+  market: "Market Trends",
+  breakdown: "Breakdowns",
+  dev_design: "Dev & Design",
+  documentary: "Docs & Interviews",
+  ai_tools: "AI & Tools",
 };
 
 export const CHANNEL_DESCRIPTIONS: Record<VideoChannelSlug, string> = {

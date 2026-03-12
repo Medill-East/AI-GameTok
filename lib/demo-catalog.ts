@@ -8,7 +8,7 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
     sourceVideoId: "dQw4w9WgXcQ",
     sourceUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
     title: "Retention Is Product Design, Not a Live-Ops Patch",
-    zhTitle: "留存不是运营补丁，而是产品设计本身",
+    zhTitle: "\u7559\u5b58\u4e0d\u662f\u8fd0\u8425\u8865\u4e01\uff0c\u800c\u662f\u4ea7\u54c1\u8bbe\u8ba1\u672c\u8eab",
     description:
       "A talk about how teams should bake long-term player motivation into the core loop before live-ops and rewards enter the picture.",
     durationSec: 2214,
@@ -56,19 +56,22 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
         channelSlug: "market",
         startSec: 30,
         endSec: 88,
-        zhTitle: "留存问题往往在首小时就已经决定了",
+        enTitle: "Retention is decided in the first hour",
+        zhTitle: "\u7559\u5b58\u95ee\u9898\u5f80\u5f80\u5728\u9996\u5c0f\u65f6\u5c31\u5df2\u7ecf\u51b3\u5b9a\u4e86",
+        enSummary:
+          "Retention is framed here as a core product-design problem: the first hour has to establish goals, mastery and identity before live-ops can matter.",
         zhSummary:
-          "这段切片把“留存”重新定义为核心产品设计问题，而不是运营阶段再补救的指标。真正决定用户是否会回来的是第一小时是否建立了目标感、成长感和身份认同。",
+          "\u8fd9\u6bb5\u5207\u7247\u628a\u201c\u7559\u5b58\u201d\u91cd\u65b0\u5b9a\u4e49\u4e3a\u6838\u5fc3\u4ea7\u54c1\u8bbe\u8ba1\u95ee\u9898\uff0c\u800c\u4e0d\u662f\u8fd0\u8425\u9636\u6bb5\u518d\u8865\u6551\u7684\u6307\u6807\u3002\u771f\u6b63\u51b3\u5b9a\u7528\u6237\u662f\u5426\u4f1a\u56de\u6765\u7684\uff0c\u662f\u7b2c\u4e00\u5c0f\u65f6\u662f\u5426\u5efa\u7acb\u4e86\u76ee\u6807\u611f\u3001\u6210\u957f\u611f\u548c\u8eab\u4efd\u8ba4\u540c\u3002",
         zhTakeaways: [
-          "留存失败通常是早期体验的问题，不是活动频次的问题。",
-          "首小时必须让玩家感到自己能进步、能表达、能形成习惯。",
-          "奖励系统只能放大已有动机，不能替代动机。",
+          "\u7559\u5b58\u5931\u8d25\u901a\u5e38\u662f\u65e9\u671f\u4f53\u9a8c\u7684\u95ee\u9898\uff0c\u4e0d\u662f\u6d3b\u52a8\u9891\u6b21\u7684\u95ee\u9898\u3002",
+          "\u9996\u5c0f\u65f6\u5fc5\u987b\u8ba9\u73a9\u5bb6\u611f\u5230\u81ea\u5df1\u80fd\u8fdb\u6b65\u3001\u80fd\u8868\u8fbe\u3001\u80fd\u5f62\u6210\u4e60\u60ef\u3002",
+          "\u5956\u52b1\u7cfb\u7edf\u53ea\u80fd\u653e\u5927\u5df2\u6709\u52a8\u673a\uff0c\u4e0d\u80fd\u66ff\u4ee3\u52a8\u673a\u3002",
         ],
-        tags: ["留存", "增长", "首小时体验"],
+        tags: ["\u7559\u5b58", "\u589e\u957f", "\u9996\u5c0f\u65f6\u4f53\u9a8c"],
         transcriptExcerpt:
           "Teams often call retention a live-ops problem, but players leave long before content cadence becomes the real issue.",
         transcriptZh:
-          "很多团队把留存当成运营节奏问题，但玩家往往在内容更新之前就已经因为核心体验而离开了。",
+          "\u5f88\u591a\u56e2\u961f\u628a\u7559\u5b58\u5f53\u6210\u8fd0\u8425\u8282\u594f\u95ee\u9898\uff0c\u4f46\u73a9\u5bb6\u5f80\u5f80\u5728\u5185\u5bb9\u66f4\u65b0\u4e4b\u524d\u5c31\u5df2\u7ecf\u56e0\u4e3a\u6838\u5fc3\u4f53\u9a8c\u800c\u79bb\u5f00\u4e86\u3002",
         score: 89,
         confidence: 0.92,
         editorPick: true,
@@ -81,7 +84,7 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
     sourceVideoId: "jNQXAC9IVRw",
     sourceUrl: "https://www.youtube.com/watch?v=jNQXAC9IVRw",
     title: "How Levels Teach Without Breaking Flow",
-    zhTitle: "关卡如何在不打断节奏的前提下完成教学",
+    zhTitle: "\u5173\u5361\u5982\u4f55\u5728\u4e0d\u6253\u65ad\u8282\u594f\u7684\u524d\u63d0\u4e0b\u5b8c\u6210\u6559\u5b66",
     description:
       "A deep dive into environmental teaching, layered affordances and tutorial pacing in modern action games.",
     durationSec: 1820,
@@ -124,19 +127,22 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
         channelSlug: "dev_design",
         startSec: 48,
         endSec: 105,
-        zhTitle: "好的教学不是解释，而是让正确动作变成最自然的选择",
+        enTitle: "Great tutorials make the right action feel natural",
+        zhTitle: "\u597d\u7684\u6559\u5b66\u4e0d\u662f\u89e3\u91ca\uff0c\u800c\u662f\u8ba9\u6b63\u786e\u52a8\u4f5c\u53d8\u6210\u6700\u81ea\u7136\u7684\u9009\u62e9",
+        enSummary:
+          "This slice explains why level teaching works best when geometry, enemies and rewards guide the player without obvious UI instruction.",
         zhSummary:
-          "这段内容解释了关卡教学的本质：不是用更多 UI 和弹窗告诉玩家做什么，而是通过空间、敌人摆放和奖励引导，让玩家自己愿意做出正确动作。",
+          "\u8fd9\u6bb5\u5185\u5bb9\u89e3\u91ca\u4e86\u5173\u5361\u6559\u5b66\u7684\u672c\u8d28\uff1a\u4e0d\u662f\u7528\u66f4\u591a UI \u548c\u5f39\u7a97\u544a\u8bc9\u73a9\u5bb6\u505a\u4ec0\u4e48\uff0c\u800c\u662f\u901a\u8fc7\u7a7a\u95f4\u3001\u654c\u4eba\u6446\u653e\u548c\u5956\u52b1\u5f15\u5bfc\uff0c\u8ba9\u73a9\u5bb6\u81ea\u5df1\u613f\u610f\u505a\u51fa\u6b63\u786e\u52a8\u4f5c\u3002",
         zhTakeaways: [
-          "无感教学依赖环境设计，而不是文本说明。",
-          "视线、路径和奖励 framing 会直接影响玩家决策。",
-          "重复同一规则并加入变化，是提升掌握感的关键方法。",
+          "\u65e0\u611f\u6559\u5b66\u4f9d\u8d56\u73af\u5883\u8bbe\u8ba1\uff0c\u800c\u4e0d\u662f\u6587\u672c\u8bf4\u660e\u3002",
+          "\u89c6\u7ebf\u3001\u8def\u5f84\u548c\u5956\u52b1 framing \u4f1a\u76f4\u63a5\u5f71\u54cd\u73a9\u5bb6\u51b3\u7b56\u3002",
+          "\u91cd\u590d\u540c\u4e00\u89c4\u5219\u5e76\u52a0\u5165\u53d8\u5316\uff0c\u662f\u63d0\u5347\u638c\u63e1\u611f\u7684\u5173\u952e\u65b9\u6cd5\u3002",
         ],
-        tags: ["关卡设计", "新手引导", "无感教学"],
+        tags: ["\u5173\u5361\u8bbe\u8ba1", "\u65b0\u624b\u5f15\u5bfc", "\u65e0\u611f\u6559\u5b66"],
         transcriptExcerpt:
           "A strong level does not explain the move, it makes the move the most attractive next action.",
         transcriptZh:
-          "优秀的关卡不会直接解释动作，而是让那个动作自然成为玩家最想做的下一步。",
+          "\u4f18\u79c0\u7684\u5173\u5361\u4e0d\u4f1a\u76f4\u63a5\u89e3\u91ca\u52a8\u4f5c\uff0c\u800c\u662f\u8ba9\u90a3\u4e2a\u52a8\u4f5c\u81ea\u7136\u6210\u4e3a\u73a9\u5bb6\u6700\u60f3\u505a\u7684\u4e0b\u4e00\u6b65\u3002",
         score: 86,
         confidence: 0.88,
         editorPick: true,
@@ -149,7 +155,7 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
     sourceVideoId: "3fumBcKC6RE",
     sourceUrl: "https://www.youtube.com/watch?v=3fumBcKC6RE",
     title: "Inside the Production Rituals of a Healthy Studio",
-    zhTitle: "健康工作室的跨职能协作仪式",
+    zhTitle: "\u5065\u5eb7\u5de5\u4f5c\u5ba4\u7684\u8de8\u804c\u80fd\u534f\u4f5c\u4eea\u5f0f",
     description:
       "A documentary-style interview on production rituals, async communication and decision making in distributed teams.",
     durationSec: 2440,
@@ -192,18 +198,22 @@ export const REMOTE_VIDEO_CATALOG: RemoteCatalogVideo[] = [
         channelSlug: "documentary",
         startSec: 60,
         endSec: 119,
-        zhTitle: "高效团队不是会议更多，而是接口更清晰",
+        enTitle: "Great teams win with clear interfaces, not more meetings",
+        zhTitle: "\u9ad8\u6548\u56e2\u961f\u4e0d\u662f\u4f1a\u8bae\u66f4\u591a\uff0c\u800c\u662f\u63a5\u53e3\u66f4\u6e05\u6670",
+        enSummary:
+          "The documentary segment ties studio efficiency to clean cross-discipline handoffs and fast documentation, not meeting volume.",
         zhSummary:
-          "这段纪录片式访谈把团队效率问题拆回到跨职能接口设计：设计、程序、美术之间如果明确彼此需要什么，协作效率和团队士气都会显著提升。",
+          "\u8fd9\u6bb5\u7eaa\u5f55\u7247\u5f0f\u8bbf\u8c08\u628a\u56e2\u961f\u6548\u7387\u95ee\u9898\u62c6\u56de\u5230\u8de8\u804c\u80fd\u63a5\u53e3\u8bbe\u8ba1\uff1a\u8bbe\u8ba1\u3001\u7a0b\u5e8f\u3001\u7f8e\u672f\u4e4b\u95f4\u5982\u679c\u660e\u786e\u5f7c\u6b64\u9700\u8981\u4ec0\u4e48\uff0c\u534f\u4f5c\u6548\u7387\u548c\u56e2\u961f\u58eb\u6c14\u90fd\u4f1a\u663e\u8457\u63d0\u5347\u3002",
         zhTakeaways: [
-          "高效协作的前提是接口清晰，而不是会议密度高。",
-          "决策需要在当天被记录，否则团队会反复重新讨论。",
-          "上下游信息带着上下文交接，能显著减少恐慌式请求。",
+          "\u9ad8\u6548\u534f\u4f5c\u7684\u524d\u63d0\u662f\u63a5\u53e3\u6e05\u6670\uff0c\u800c\u4e0d\u662f\u4f1a\u8bae\u5bc6\u5ea6\u9ad8\u3002",
+          "\u51b3\u7b56\u9700\u8981\u5728\u5f53\u5929\u88ab\u8bb0\u5f55\uff0c\u5426\u5219\u56e2\u961f\u4f1a\u53cd\u590d\u91cd\u65b0\u8ba8\u8bba\u3002",
+          "\u4e0a\u4e0b\u6e38\u4fe1\u606f\u5e26\u7740\u4e0a\u4e0b\u6587\u4ea4\u63a5\uff0c\u80fd\u663e\u8457\u51cf\u5c11\u6050\u614c\u5f0f\u8bf7\u6c42\u3002",
         ],
-        tags: ["制作流程", "跨团队协作", "纪录片"],
+        tags: ["\u5236\u4f5c\u6d41\u7a0b", "\u8de8\u56e2\u961f\u534f\u4f5c", "\u7eaa\u5f55\u7247"],
         transcriptExcerpt:
           "The teams shipping well were not the teams with the most meetings, they were the teams with the clearest interfaces between disciplines.",
-        transcriptZh: "真正交付稳定的团队，不是会议最多的团队，而是跨职能接口最清晰的团队。",
+        transcriptZh:
+          "\u771f\u6b63\u4ea4\u4ed8\u7a33\u5b9a\u7684\u56e2\u961f\uff0c\u4e0d\u662f\u4f1a\u8bae\u6700\u591a\u7684\u56e2\u961f\uff0c\u800c\u662f\u8de8\u804c\u80fd\u63a5\u53e3\u6700\u6e05\u6670\u7684\u56e2\u961f\u3002",
         score: 77,
         confidence: 0.7,
         editorPick: false,

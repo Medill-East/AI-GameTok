@@ -36,11 +36,11 @@ export function ShareButton({
         window.setTimeout(() => setCopied(false), 1500);
       }}
       className={cn(
-        "inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-black/25 px-3 py-2 text-sm font-semibold text-white transition hover:bg-black/40 lg:px-4",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/20 bg-black/25 px-3 py-2 text-sm font-semibold text-white transition hover:bg-black/40 lg:px-4",
         className,
       )}
     >
-      <ShareIcon className="h-4 w-4" />
+      <ShareIcon className="h-5 w-5" />
       <span className={iconOnlyMobile ? "hidden md:inline" : ""}>
         {copied ? "\u5df2\u590d\u5236" : "\u5206\u4eab"}
       </span>

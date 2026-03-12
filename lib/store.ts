@@ -55,6 +55,8 @@ function normalizeVideo(video: Video): Video {
 function normalizeClip(clip: Clip): Clip {
   return {
     ...clip,
+    enTitle: clip.enTitle ?? "",
+    enSummary: clip.enSummary ?? "",
     signalSource: clip.signalSource ?? "public_heuristic",
     rankScore: clip.rankScore ?? clip.score,
     searchText: clip.searchText ?? "",
@@ -85,7 +87,9 @@ function buildVideoSearchText(video: Video, channel?: Channel) {
 
 function buildClipSearchText(clip: Clip, video?: Video, channel?: Channel) {
   return [
+    clip.enTitle,
     clip.zhTitle,
+    clip.enSummary,
     clip.zhSummary,
     clip.tags.join(" "),
     clip.transcriptExcerpt,
@@ -471,7 +475,7 @@ export async function searchCatalog(options: {
             const matchScore = scoreSearchDocument(
               hydrated.searchText,
               options.query,
-              `${hydrated.zhTitle} ${hydrated.video.zhTitle}`,
+              `${hydrated.zhTitle} ${hydrated.enTitle} ${hydrated.video.zhTitle} ${hydrated.video.title}`,
               hydrated.tags,
             );
 

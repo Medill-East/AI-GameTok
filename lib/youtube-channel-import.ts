@@ -1249,7 +1249,11 @@ function buildClipRecords(
       channelSlug,
       startSec: chapter.startSec,
       endSec: chapter.endSec,
+      enTitle: chapterTitle === video.title ? video.title : `${video.title} - ${chapterTitle}`,
       zhTitle: clipTitle,
+      enSummary:
+        leadParagraph ||
+        `${channel.name}: ${chapterTitle} from ${video.title}.`,
       zhSummary: buildSummary(channel.name, video.title, chapterTitle, leadParagraph),
       zhTakeaways: buildTakeaways(config.focusLabel, chapterTitle, video.title),
       tags: [channel.name, config.focusLabel, chapterTitle].filter(Boolean),
