@@ -8,6 +8,7 @@ import type {
   Channel,
   Clip,
   FeedClip,
+  FeedPage,
   SearchClipResult,
   SearchResults,
   SearchVideoResult,
@@ -192,6 +193,50 @@ function sortClips(clips: Clip[]) {
   });
 }
 
+function remixClips(clips: Clip[], seed = 0) {
+  const buckets = new Map<string, Clip[]>();
+
+  clips.forEach((clip) => {
+    const bucketKey = `${clip.channelSlug}`;
+    const current = buckets.get(bucketKey) ?? [];
+    current.push(clip);
+    buckets.set(bucketKey, current);
+  });
+
+  const keys = [...buckets.keys()];
+
+  if (!keys.length) {
+    return [];
+  }
+
+  const rotation = ((seed % keys.length) + keys.length) % keys.length;
+  const orderedKeys = [...keys.slice(rotation), ...keys.slice(0, rotation)];
+  const mixed: Clip[] = [];
+  let lastVideoId = "";
+
+  while (orderedKeys.some((key) => (buckets.get(key)?.length ?? 0) > 0)) {
+    orderedKeys.forEach((key) => {
+      const bucket = buckets.get(key);
+
+      if (!bucket?.length) {
+        return;
+      }
+
+      const preferredIndex = bucket.findIndex((clip) => clip.videoId !== lastVideoId);
+      const nextClip = bucket.splice(preferredIndex >= 0 ? preferredIndex : 0, 1)[0];
+
+      if (!nextClip) {
+        return;
+      }
+
+      mixed.push(nextClip);
+      lastVideoId = nextClip.videoId;
+    });
+  }
+
+  return mixed;
+}
+
 function videoMatchesAvailability(video: Video) {
   return video.availabilityStatus === "ok";
 }
@@ -242,10 +287,13 @@ export async function getFeed(options?: {
   channel?: VideoChannelSlug;
   cursor?: number;
   limit?: number;
-}) {
+  excludeIds?: string[];
+  recycle?: boolean;
+}): Promise<FeedPage> {
   const data = await readStore();
   const channelMap = new Map(data.channels.map((channel) => [channel.id, channel]));
   const videoMap = new Map(data.videos.map((video) => [video.id, video]));
+  const excludeSet = new Set(options?.excludeIds ?? []);
 
   const filtered = sortClips(data.clips).filter((clip) => {
     const video = videoMap.get(clip.videoId);
@@ -260,14 +308,27 @@ export async function getFeed(options?: {
 
   const cursor = options?.cursor ?? 0;
   const limit = options?.limit ?? 20;
-  const slice = filtered.slice(cursor, cursor + limit);
+  const unseen = excludeSet.size
+    ? filtered.filter((clip) => !excludeSet.has(clip.id))
+    : filtered;
+
+  const source = options?.recycle
+    ? remixClips(unseen.length >= limit ? unseen : filtered, cursor)
+    : unseen.length > cursor
+      ? unseen
+      : filtered;
+  const slice = options?.recycle
+    ? source.slice(0, limit)
+    : source.slice(cursor, cursor + limit);
   const clips = slice
     .map((clip) => hydrateClip(clip, videoMap, channelMap))
     .filter(Boolean) as FeedClip[];
 
   return {
     clips,
-    nextCursor: cursor + limit < filtered.length ? cursor + limit : null,
+    nextCursor:
+      options?.recycle || cursor + limit >= unseen.length ? null : cursor + limit,
+    recycled: options?.recycle ?? false,
   };
 }
 

@@ -18,11 +18,15 @@ export default async function ChannelPage({ params }: PageProps) {
     notFound();
   }
 
-  const { clips } = await getFeed({ channel });
+  const { clips, nextCursor } = await getFeed({ channel, limit: 16 });
 
   return (
     <main className="h-[100dvh] md:px-4 md:py-6 xl:px-6">
-      <ClipFeed clips={clips} currentChannel={channel} />
+      <ClipFeed
+        initialClips={clips}
+        initialNextCursor={nextCursor}
+        currentChannel={channel}
+      />
     </main>
   );
 }

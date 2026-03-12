@@ -100,6 +100,12 @@ export interface FeedClip extends Clip {
   continueAtSec: number;
 }
 
+export interface FeedPage {
+  clips: FeedClip[];
+  nextCursor: number | null;
+  recycled?: boolean;
+}
+
 export interface VideoDetail extends Video {
   channel: Channel;
   clips: FeedClip[];

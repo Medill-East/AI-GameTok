@@ -39,6 +39,7 @@ interface ChannelImportConfig {
   minDurationSec: number;
   language?: Language;
   maxClips?: number;
+  importLimit?: number;
   includeAny?: string[];
   excludeAny?: string[];
 }
@@ -113,6 +114,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     defaultSlug: "market",
     minDurationSec: 300,
     maxClips: 5,
+    importLimit: 52,
     includeAny: [
       "design",
       "marketing",
@@ -159,6 +161,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     defaultSlug: "dev_design",
     minDurationSec: 300,
     maxClips: 5,
+    importLimit: 48,
     excludeAny: [
       "trailer",
       "let's play",
@@ -175,6 +178,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     defaultSlug: "documentary",
     minDurationSec: 300,
     maxClips: 5,
+    importLimit: 40,
     excludeAny: ["teaser trailer", "announcing /noclip's brand new channel"],
   },
   ch_sakurai: {
@@ -189,6 +193,7 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     minDurationSec: 90,
     language: "en",
     maxClips: 4,
+    importLimit: 36,
     excludeAny: ["shorts", "livestream", "trailer"],
   },
   ch_ai_games: {
@@ -202,8 +207,50 @@ const CHANNEL_IMPORT_SOURCES: Record<string, ChannelImportConfig> = {
     minDurationSec: 240,
     language: "en",
     maxClips: 5,
+    importLimit: 32,
     includeAny: ["ai", "simulation", "npc", "director", "tool", "systems"],
     excludeAny: ["livestream", "channel update", "trailer"],
+  },
+  ch_extra_credits: {
+    sourceChannelId: "@ExtraCredits",
+    handle: "@ExtraCredits",
+    videosUrl: "https://www.youtube.com/@ExtraCredits/videos?view=0&sort=p&flow=grid",
+    description:
+      "Educational essays on game design, systems, balance, history and developer-facing production lessons.",
+    focusLabel: "\u6e38\u620f\u673a\u5236\u4e0e\u8bbe\u8ba1\u6559\u7a0b",
+    defaultSlug: "breakdown",
+    minDurationSec: 240,
+    language: "en",
+    maxClips: 5,
+    importLimit: 28,
+    includeAny: [
+      "game",
+      "design",
+      "history",
+      "mechanic",
+      "balance",
+      "combat",
+      "economy",
+      "level",
+      "system",
+      "narrative",
+    ],
+    excludeAny: ["livestream", "podcast", "trailer", "shorts"],
+  },
+  ch_people_make_games: {
+    sourceChannelId: "@PeopleMakeGames",
+    handle: "@PeopleMakeGames",
+    videosUrl: "https://www.youtube.com/@PeopleMakeGames/videos?view=0&sort=p&flow=grid",
+    description:
+      "Investigative documentaries and industry reporting about studios, live service, labor and platform ecosystems.",
+    focusLabel: "\u4ea7\u4e1a\u8c03\u67e5\u4e0e\u5de5\u4f5c\u5ba4\u7eaa\u5f55",
+    defaultSlug: "documentary",
+    minDurationSec: 300,
+    language: "en",
+    maxClips: 5,
+    importLimit: 24,
+    includeAny: ["game", "games", "studio", "developer", "indie", "platform"],
+    excludeAny: ["livestream", "trailer", "shorts"],
   },
 };
 
@@ -787,6 +834,20 @@ function scoreFromFreshness(publishedAt: string) {
   return 0;
 }
 
+function resolveClipBudget(config: ChannelImportConfig, item: ExtractedVideo) {
+  let budget = config.maxClips ?? 5;
+
+  if (item.durationSec >= 3600) {
+    budget += 1;
+  }
+
+  if (item.viewCount >= 750_000) {
+    budget += 1;
+  }
+
+  return Math.min(7, budget);
+}
+
 function extractVideoTopicKeywords(videoTitle: string) {
   return videoTitle
     .toLowerCase()
@@ -1165,7 +1226,7 @@ function buildClipRecords(
     watchDetails.chapters,
     video.durationSec,
     video.title,
-    config.maxClips ?? 5,
+    resolveClipBudget(config, item),
   );
   const baseScore = scoreFromViews(item.viewCount) + scoreFromFreshness(item.publishedAt);
   const defaultStatus =
@@ -1270,6 +1331,18 @@ function buildManagedChannelRecord(id: string, config: ChannelImportConfig): Cha
       avatarUrl:
         "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=400&q=80",
       name: "AI and Games",
+    },
+    ch_extra_credits: {
+      themeColor: "#9e4d1d",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80",
+      name: "Extra Credits",
+    },
+    ch_people_make_games: {
+      themeColor: "#5c4cb0",
+      avatarUrl:
+        "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+      name: "People Make Games",
     },
   };
 
@@ -1395,7 +1468,10 @@ export async function importPopularVideosFromChannels(
     summary.removedVideos += removed.removedVideos;
     summary.removedClips += removed.removedClips;
 
-    const items = await selectVideosForImport(channel.id, limitPerChannel);
+    const items = await selectVideosForImport(
+      channel.id,
+      config.importLimit ?? limitPerChannel,
+    );
 
     for (const item of items) {
       try {
