@@ -37,6 +37,7 @@ function normalizeChannel(channel: Channel): Channel {
   return {
     ...channel,
     authMode: channel.authMode ?? "public",
+    contentTier: channel.contentTier ?? "third_party_public",
     analyticsConnectedAt: channel.analyticsConnectedAt ?? null,
   };
 }
@@ -48,6 +49,11 @@ function normalizeVideo(video: Video): Video {
     availabilityStatus: video.availabilityStatus ?? DEFAULT_AVAILABILITY_STATUS,
     playbackCheckedAt: video.playbackCheckedAt ?? null,
     playbackErrorReason: video.playbackErrorReason ?? null,
+    playbackMode:
+      video.playbackMode ??
+      (video.availabilityStatus && video.availabilityStatus !== "ok"
+        ? "platform_link"
+        : "platform_embed"),
     searchText: video.searchText ?? "",
   };
 }

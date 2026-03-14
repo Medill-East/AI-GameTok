@@ -6,6 +6,7 @@ export type ClipStatus = "draft" | "published" | "archived" | "needs_review";
 export type ChannelSyncStatus = "idle" | "running" | "error";
 export type WhitelistStatus = "active" | "paused";
 export type ChannelAuthMode = "public" | "authorized";
+export type ChannelContentTier = "third_party_public" | "licensed_partner" | "owned";
 export type AvailabilityStatus =
   | "ok"
   | "unavailable"
@@ -14,6 +15,7 @@ export type AvailabilityStatus =
   | "embed_blocked"
   | "age_restricted";
 export type ClipSignalSource = "public_heuristic" | "analytics_retention";
+export type PlaybackMode = "platform_embed" | "platform_link" | "native_clip";
 
 export type VideoChannelSlug =
   | "market"
@@ -42,6 +44,7 @@ export interface Channel {
   syncStatus: ChannelSyncStatus;
   lastSyncedAt: string | null;
   authMode: ChannelAuthMode;
+  contentTier: ChannelContentTier;
   analyticsConnectedAt?: string | null;
 }
 
@@ -61,6 +64,7 @@ export interface Video {
   availabilityStatus: AvailabilityStatus;
   playbackCheckedAt: string | null;
   playbackErrorReason: string | null;
+  playbackMode: PlaybackMode;
   searchText: string;
 }
 

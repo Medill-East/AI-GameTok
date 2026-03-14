@@ -87,17 +87,21 @@ export function ClipFeed({
             search: "Search",
             soundOn: "Sound on",
             soundOff: "Sound off",
-            language: "中文",
+            language: "\u4e2d\u6587",
             menu: "Browse",
             saved: "Saved",
             admin: "Admin",
             all: "All",
             continueWatching: "Continue",
             loadingMore: "Loading more",
-            autoplayBlocked: "Safari blocked autoplay. Tap the player once to continue.",
+            autoplayBlocked:
+              "If inline playback is interrupted, verify on YouTube in the same browser and return here.",
+            blockedHint:
+              "Inline playback was interrupted. Continue in-site or open YouTube to verify once, then come back.",
             categories: "Categories",
             library: "Library",
-            duration: "clip",
+            duration: "preview",
+            openYoutube: "YouTube",
           }
         : {
             search: "\u641c\u7d22",
@@ -110,10 +114,14 @@ export function ClipFeed({
             all: "\u5168\u90e8",
             continueWatching: "\u7ee7\u7eed\u770b",
             loadingMore: "\u7ee7\u7eed\u52a0\u8f7d",
-            autoplayBlocked: "Safari \u7981\u6b62\u4e86\u81ea\u52a8\u64ad\u653e\uff0c\u70b9\u4e00\u4e0b\u89c6\u9891\u53ef\u7ee7\u7eed\u3002",
+            autoplayBlocked:
+              "\u5982\u679c\u7ad9\u5185\u64ad\u653e\u88ab\u6253\u65ad\uff0c\u53ef\u5148\u5728\u540c\u4e00\u6d4f\u89c8\u5668\u91cc\u5b8c\u6210 YouTube \u9a8c\u8bc1\uff0c\u518d\u56de\u6765\u7ee7\u7eed\u770b\u3002",
+            blockedHint:
+              "\u5f53\u524d\u7ad9\u5185\u9884\u89c8\u88ab\u6253\u65ad\uff0c\u53ef\u76f4\u63a5\u7ad9\u5185\u7eed\u770b\uff0c\u6216\u5148\u53bb YouTube \u5b8c\u6210\u4e00\u6b21\u9a8c\u8bc1\u540e\u518d\u8fd4\u56de\u3002",
             categories: "\u9891\u9053\u5206\u7c7b",
             library: "\u5185\u5bb9\u5e93",
-            duration: "\u5207\u7247",
+            duration: "\u9884\u89c8",
+            openYoutube: "\u53bb YouTube",
           },
     [language],
   );
@@ -449,6 +457,11 @@ export function ClipFeed({
                     endSec={clip.endSec}
                     active
                     muted={!soundEnabled}
+                    blockedHint={copy.blockedHint}
+                    continueUrl={`/video/${clip.video.id}?from=${clip.id}`}
+                    continueLabel={copy.continueWatching}
+                    watchUrl={clip.watchUrl}
+                    watchLabel={copy.openYoutube}
                     onPlaybackStateChange={setPlaybackStatus}
                   />
                 ) : (

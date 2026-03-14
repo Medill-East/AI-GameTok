@@ -30,8 +30,8 @@ export function AdminDashboard({
     <div className="space-y-8">
       <section className="grid gap-4 md:grid-cols-5">
         {[
-          ["\u5df2\u53d1\u5e03\u5207\u7247", overview.counts.publishedClips],
-          ["\u5f85\u5ba1\u6838\u5207\u7247", overview.counts.pendingClips],
+          ["\u5df2\u53d1\u5e03\u5173\u952e\u7247\u6bb5", overview.counts.publishedClips],
+          ["\u5f85\u5ba1\u6838\u7247\u6bb5", overview.counts.pendingClips],
           ["\u64ad\u653e\u5f02\u5e38", overview.counts.playbackIssues],
           ["\u89c6\u9891\u603b\u6570", overview.counts.videos],
           ["\u767d\u540d\u5355\u9891\u9053", overview.counts.channels],
@@ -49,7 +49,7 @@ export function AdminDashboard({
             <div>
               <p className="eyebrow">Operations</p>
               <h2 className="display-font mt-3 text-2xl font-bold">
-                {"\u540c\u6b65\u4e0e\u5065\u5eb7\u68c0\u67e5"}
+                {"\u805a\u5408\u540c\u6b65\u4e0e\u5065\u5eb7\u68c0\u67e5"}
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -154,7 +154,7 @@ export function AdminDashboard({
           </div>
           <p className="mt-4 text-sm leading-7 text-black/70">
             {
-              "\u8fd9\u4e00\u7248\u4f1a\u5728\u540c\u6b65\u65f6\u81ea\u52a8\u8865\u9f50 GDC\u3001GMTK\u3001Noclip\u3001Masahiro Sakurai \u548c AI and Games \u8fd9\u4e9b\u6269\u5c55\u767d\u540d\u5355\uff0c\u5e76\u540c\u65f6\u8bb0\u5f55\u53ef\u64ad\u6027\u72b6\u6001\u3002"
+              "\u8fd9\u4e00\u7248\u4f1a\u5728\u540c\u6b65\u65f6\u81ea\u52a8\u8865\u9f50\u767d\u540d\u5355\u9891\u9053\u7684\u89c6\u9891\u5143\u6570\u636e\u3001\u53ef\u64ad\u6027\u72b6\u6001\u548c\u5173\u952e\u7247\u6bb5\u7d22\u5f15\u3002"
             }
           </p>
           {message ? <p className="mt-4 text-sm font-semibold text-[var(--forest)]">{message}</p> : null}
@@ -200,7 +200,7 @@ export function AdminDashboard({
           </h2>
           <p className="mt-3 text-sm leading-7 text-black/70">
             {
-              "\u6b64\u5165\u53e3\u9002\u5408\u65b0\u589e\u81ea\u5b9a\u4e49 YouTube \u767d\u540d\u5355\u9891\u9053\u3002\u53ef\u6388\u6743\u9891\u9053\u7684 retention \u70ed\u533a\u5207\u7247\u4f1a\u540e\u7eed\u901a\u8fc7 Analytics \u63a5\u5165\u3002"
+              "\u6b64\u5165\u53e3\u9002\u5408\u65b0\u589e\u81ea\u5b9a\u4e49 YouTube \u767d\u540d\u5355\u9891\u9053\u3002\u516c\u5f00\u7b2c\u4e09\u65b9\u9891\u9053\u9ed8\u8ba4\u4f5c\u4e3a\u805a\u5408\u6765\u6e90\uff0c\u6388\u6743\u9891\u9053\u624d\u4f1a\u540e\u7eed\u63a5\u5165\u66f4\u6df1\u5ea6\u7684\u5207\u7247\u80fd\u529b\u3002"
             }
           </p>
           <label className="mt-5 block text-sm font-semibold text-black/70">
@@ -226,7 +226,7 @@ export function AdminDashboard({
         <div className="panel-card rounded-[2rem] p-6">
           <div className="flex items-center justify-between">
             <h2 className="display-font text-2xl font-bold">
-              {"\u5f85\u5ba1\u6838\u5207\u7247"}
+              {"\u5f85\u5ba1\u6838\u5173\u952e\u7247\u6bb5"}
             </h2>
             <span className="text-sm text-black/55">{overview.pendingClips.length} {"\u6761"}</span>
           </div>
@@ -254,7 +254,7 @@ export function AdminDashboard({
               ))
             ) : (
               <p className="text-sm leading-7 text-black/70">
-                {"\u5f53\u524d\u6ca1\u6709\u5f85\u5ba1\u6838\u5207\u7247\u3002"}
+                {"\u5f53\u524d\u6ca1\u6709\u5f85\u5ba1\u6838\u7684\u5173\u952e\u7247\u6bb5\u3002"}
               </p>
             )}
           </div>
@@ -316,6 +316,7 @@ export function AdminDashboard({
               <div className="text-right text-xs text-black/55">
                 <p>{channel.whitelistStatus === "active" ? "ACTIVE" : "PAUSED"}</p>
                 <p>{channel.authMode.toUpperCase()}</p>
+                <p>{channel.contentTier}</p>
                 <p>
                   {channel.lastSyncedAt
                     ? formatDate(channel.lastSyncedAt)
@@ -334,22 +335,23 @@ export function AdminDashboard({
               {"\u89c6\u9891\u5e93"}
             </h2>
             <p className="mt-2 text-sm text-black/65">
-              {"\u67e5\u770b\u6bcf\u6761\u957f\u89c6\u9891\u7684\u53ef\u64ad\u72b6\u6001\u3001\u5207\u7247\u6570\u548c\u8fd0\u7ef4\u52a8\u4f5c\u3002"}
+              {"\u67e5\u770b\u6bcf\u6761\u957f\u89c6\u9891\u7684\u53ef\u64ad\u72b6\u6001\u3001\u5173\u952e\u7247\u6bb5\u6570\u548c\u805a\u5408\u64ad\u653e\u65b9\u5f0f\u3002"}
             </p>
           </div>
         </div>
         <div className="mt-5 overflow-hidden rounded-[1.75rem] border border-black/8">
-          <div className="grid grid-cols-[1.4fr_0.7fr_0.6fr_0.7fr_0.6fr] bg-black/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">
+          <div className="grid grid-cols-[1.4fr_0.7fr_0.55fr_0.7fr_0.7fr_0.6fr] bg-black/5 px-4 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/55">
             <span>{"\u89c6\u9891"}</span>
             <span>{"\u9891\u9053"}</span>
-            <span>{"\u5207\u7247"}</span>
+            <span>{"\u7247\u6bb5"}</span>
             <span>{"\u53ef\u64ad\u6027"}</span>
+            <span>{"\u64ad\u653e\u6a21\u5f0f"}</span>
             <span>{"\u64cd\u4f5c"}</span>
           </div>
           {overview.videos.map((video) => (
             <div
               key={video.id}
-              className="grid grid-cols-[1.4fr_0.7fr_0.6fr_0.7fr_0.6fr] items-center border-t border-black/6 bg-white/70 px-4 py-4 text-sm"
+              className="grid grid-cols-[1.4fr_0.7fr_0.55fr_0.7fr_0.7fr_0.6fr] items-center border-t border-black/6 bg-white/70 px-4 py-4 text-sm"
             >
               <div>
                 <p className="font-semibold">{video.zhTitle}</p>
@@ -358,6 +360,7 @@ export function AdminDashboard({
               <span>{video.channel.name}</span>
               <span>{video.clipCount}</span>
               <span className="font-semibold text-black/70">{video.availabilityStatus}</span>
+              <span className="text-black/60">{video.playbackMode}</span>
               <Link
                 href={`/admin/videos/${video.id}`}
                 className="inline-flex w-fit rounded-full border border-black/10 px-4 py-2 font-semibold"

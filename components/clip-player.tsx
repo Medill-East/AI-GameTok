@@ -26,6 +26,11 @@ interface ClipPlayerProps {
   endSec: number;
   active?: boolean;
   muted?: boolean;
+  blockedHint?: string;
+  continueUrl?: string;
+  continueLabel?: string;
+  watchUrl?: string;
+  watchLabel?: string;
   onPlaybackStateChange?: (status: ClipPlayerStatus) => void;
 }
 
@@ -71,6 +76,11 @@ export function ClipPlayer({
   endSec,
   active = false,
   muted = true,
+  blockedHint = "Playback was interrupted. Continue in-site or open YouTube.",
+  continueUrl,
+  continueLabel = "Continue in site",
+  watchUrl,
+  watchLabel = "Open YouTube",
   onPlaybackStateChange,
 }: ClipPlayerProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -288,16 +298,34 @@ export function ClipPlayer({
             <p className="text-xs font-semibold tracking-[0.18em] uppercase text-white/72">
               Tap To Play
             </p>
-            <p className="text-sm text-white/88">
-              Safari blocked autoplay. Tap once to continue.
-            </p>
-            <button
-              type="button"
-              onClick={handleManualPlay}
-              className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black"
-            >
-              Play Clip
-            </button>
+            <p className="text-sm text-white/88">{blockedHint}</p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <button
+                type="button"
+                onClick={handleManualPlay}
+                className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black"
+              >
+                Play Clip
+              </button>
+              {continueUrl ? (
+                <a
+                  href={continueUrl}
+                  className="rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white"
+                >
+                  {continueLabel}
+                </a>
+              ) : null}
+              {watchUrl ? (
+                <a
+                  href={watchUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-white/25 px-4 py-2 text-sm font-semibold text-white"
+                >
+                  {watchLabel}
+                </a>
+              ) : null}
+            </div>
           </div>
         </div>
       ) : null}

@@ -22,56 +22,56 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
           eyebrow: "Search",
           title: "Topic Search",
           intro:
-            "Search slices by game, mechanic, topic or channel. Clips come first, with long videos kept as the next step.",
+            "Search high-signal highlights by game, mechanic, topic or channel. Highlights come first, with long videos kept as the next step.",
           home: "Back to feed",
           keyword: "Keyword",
           keywordPlaceholder: "For example: Disco Elysium / level design / retention",
-          channel: "Channel",
+          channelLabel: "Channel",
           all: "All",
           resultType: "Result type",
-          clips: "Clips",
+          highlights: "Highlights",
           videos: "Videos",
           search: "Search",
-          clipResults: "Clip Results",
+          highlightResults: "Highlight Results",
           videoResults: "Video Results",
           itemCount: "items",
-          viewClip: "Watch clip",
+          openHighlight: "Open highlight",
           continueWatching: "Continue video",
           openVideo: "Open video",
-          clipCount: "clips",
-          emptyClips: "No clips matched this search.",
+          highlightCount: "highlights",
+          emptyHighlights: "No highlights matched this search.",
           emptyVideos: "No long videos matched this search.",
           emptyState:
-            "Enter a keyword to search clips and long videos by game name, design topic, growth issue or AI tooling.",
+            "Enter a keyword to search highlights and long videos by game name, design topic, growth issue or AI tooling.",
           match: "Match",
-          language: "中文",
+          language: "\u4e2d\u6587",
         }
       : {
-          eyebrow: "Search",
+          eyebrow: "\u641c\u7d22",
           title: "\u4e3b\u9898\u641c\u7d22",
           intro:
-            "\u6309\u6e38\u620f\u540d\u3001\u7cfb\u7edf\u3001\u4e3b\u9898\u6216\u9891\u9053\u641c\u5207\u7247\u3002\u7ed3\u679c\u4f18\u5148\u8fd4\u56de\u53ef\u76f4\u63a5\u89c2\u770b\u7684\u5207\u7247\uff0c\u540c\u65f6\u4fdd\u7559\u957f\u89c6\u9891\u5165\u53e3\u3002",
+            "\u6309\u6e38\u620f\u540d\u3001\u7cfb\u7edf\u3001\u4e3b\u9898\u6216\u9891\u9053\u641c\u7d22\u5173\u952e\u7247\u6bb5\u3002\u7ed3\u679c\u4f18\u5148\u8fd4\u56de\u9002\u5408\u5feb\u901f\u7406\u89e3\u7684\u7d22\u5f15\u7247\u6bb5\uff0c\u540c\u65f6\u4fdd\u7559\u957f\u89c6\u9891\u5165\u53e3\u3002",
           home: "\u8fd4\u56de\u9996\u9875",
           keyword: "\u5173\u952e\u8bcd",
           keywordPlaceholder: "\u6bd4\u5982\uff1aDisco Elysium / level design / retention",
-          channel: "\u9891\u9053",
+          channelLabel: "\u9891\u9053",
           all: "\u5168\u90e8",
           resultType: "\u7ed3\u679c\u7c7b\u578b",
-          clips: "\u5207\u7247",
-          videos: "\u89c6\u9891",
+          highlights: "\u5173\u952e\u7247\u6bb5",
+          videos: "\u957f\u89c6\u9891",
           search: "\u641c\u7d22",
-          clipResults: "\u5207\u7247\u7ed3\u679c",
+          highlightResults: "\u5173\u952e\u7247\u6bb5\u7ed3\u679c",
           videoResults: "\u957f\u89c6\u9891\u7ed3\u679c",
           itemCount: "\u6761",
-          viewClip: "\u770b\u5207\u7247",
+          openHighlight: "\u6253\u5f00\u7247\u6bb5",
           continueWatching: "\u7ee7\u7eed\u770b\u957f\u89c6\u9891",
           openVideo: "\u6253\u5f00\u89c6\u9891",
-          clipCount: "\u4e2a\u5207\u7247",
-          emptyClips: "\u6ca1\u6709\u5339\u914d\u7684\u5207\u7247\u3002",
+          highlightCount: "\u4e2a\u7247\u6bb5",
+          emptyHighlights: "\u6ca1\u6709\u5339\u914d\u7684\u5173\u952e\u7247\u6bb5\u3002",
           emptyVideos: "\u6ca1\u6709\u5339\u914d\u7684\u957f\u89c6\u9891\u3002",
           emptyState:
-            "\u8f93\u5165\u5173\u952e\u8bcd\u540e\uff0c\u53ef\u6309\u6e38\u620f\u540d\u3001\u8bbe\u8ba1\u4e3b\u9898\u3001\u589e\u957f\u95ee\u9898\u6216 AI \u5de5\u5177\u67e5\u627e\u5207\u7247\u548c\u957f\u89c6\u9891\u3002",
-          match: "Match",
+            "\u8f93\u5165\u5173\u952e\u8bcd\u540e\uff0c\u53ef\u6309\u6e38\u620f\u540d\u3001\u8bbe\u8ba1\u4e3b\u9898\u3001\u589e\u957f\u95ee\u9898\u6216 AI \u5de5\u5177\u67e5\u627e\u5173\u952e\u7247\u6bb5\u548c\u957f\u89c6\u9891\u3002",
+          match: "\u5339\u914d\u5ea6",
           language: "EN",
         };
 
@@ -112,7 +112,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
           />
         </label>
         <label className="text-sm font-semibold">
-          {copy.channel}
+          {copy.channelLabel}
           <select
             name="channel"
             defaultValue={channel ?? ""}
@@ -136,7 +136,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
             className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3 outline-none"
           >
             <option value="all">{copy.all}</option>
-            <option value="clips">{copy.clips}</option>
+            <option value="clips">{copy.highlights}</option>
             <option value="videos">{copy.videos}</option>
           </select>
         </label>
@@ -153,7 +153,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
         <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <section className="panel-card rounded-[2rem] p-6">
             <div className="flex items-center justify-between gap-4">
-              <h2 className="display-font text-2xl font-bold">{copy.clipResults}</h2>
+              <h2 className="display-font text-2xl font-bold">{copy.highlightResults}</h2>
               <span className="text-sm text-black/55">
                 {results.clips.length} {copy.itemCount}
               </span>
@@ -180,7 +180,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
                         href={`/clip/${clip.id}`}
                         className="rounded-full bg-[var(--forest)] px-4 py-2 text-sm font-semibold text-white"
                       >
-                        {copy.viewClip}
+                        {copy.openHighlight}
                       </Link>
                       <Link
                         href={`/video/${clip.video.id}?from=${clip.id}`}
@@ -192,7 +192,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
                   </article>
                 ))
               ) : (
-                <p className="text-sm leading-7 text-black/70">{copy.emptyClips}</p>
+                <p className="text-sm leading-7 text-black/70">{copy.emptyHighlights}</p>
               )}
             </div>
           </section>
@@ -221,7 +221,7 @@ export function SearchView({ query, channel, type, results }: SearchViewProps) {
                         {copy.openVideo}
                       </Link>
                       <span className="rounded-full border border-black/10 px-4 py-2 text-sm text-black/60">
-                        {video.clipCount} {copy.clipCount}
+                        {video.clipCount} {copy.highlightCount}
                       </span>
                     </div>
                   </article>

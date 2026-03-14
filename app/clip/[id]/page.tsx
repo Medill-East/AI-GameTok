@@ -20,9 +20,12 @@ export default async function ClipDetailPage({ params }: PageProps) {
     <main className="section-shell space-y-8 py-8">
       <section className="panel-card grid gap-6 rounded-[2rem] p-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div className="space-y-4">
-          <div className="eyebrow">Clip Detail</div>
+          <div className="eyebrow">Highlight Detail</div>
           <h1 className="display-font text-4xl font-bold">{clip.zhTitle}</h1>
           <p className="max-w-3xl text-base leading-8 text-black/72">{clip.zhSummary}</p>
+          <div className="rounded-[1.5rem] border border-black/8 bg-white/70 p-5 text-sm leading-7 text-black/68">
+            这里展示的是一个用于快速理解主题的索引片段，不代表平台自托管了第三方完整视频。继续深入观看时，会优先把你带到站内原视频页，再由原平台完成长视频消费。
+          </div>
           <div className="flex flex-wrap gap-2">
             {clip.zhTakeaways.map((item) => (
               <span
@@ -34,7 +37,7 @@ export default async function ClipDetailPage({ params }: PageProps) {
             ))}
           </div>
           <div className="rounded-[1.5rem] border border-black/8 bg-white/70 p-5 text-sm leading-7">
-            <p className="font-semibold">{"\u5207\u7247\u539f\u6587"}</p>
+            <p className="font-semibold">{"\u7247\u6bb5\u539f\u6587"}</p>
             <p className="mt-2">{clip.transcriptExcerpt}</p>
             <p className="mt-3 font-semibold">{"\u4e2d\u6587\u8f6c\u5199"}</p>
             <p className="mt-2">{clip.transcriptZh}</p>
@@ -67,7 +70,7 @@ export default async function ClipDetailPage({ params }: PageProps) {
               href={`/video/${clip.video.id}?from=${clip.id}`}
               className="rounded-full bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white"
             >
-              {"\u7ad9\u5185\u7eed\u770b"}
+              {"\u7ad9\u5185\u7eed\u770b\u957f\u89c6\u9891"}
             </Link>
             <a
               href={clip.watchUrl}
@@ -75,7 +78,7 @@ export default async function ClipDetailPage({ params }: PageProps) {
               rel="noreferrer"
               className="rounded-full border border-black/10 px-4 py-3 text-sm font-semibold"
             >
-              {"\u53bb YouTube"}
+              {"\u53bb YouTube \u770b\u539f\u89c6\u9891"}
             </a>
           </div>
         </aside>

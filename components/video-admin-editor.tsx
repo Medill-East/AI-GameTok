@@ -278,6 +278,9 @@ export function VideoAdminEditor({
         <p className="eyebrow">Video Detail</p>
         <h1 className="display-font mt-3 text-4xl font-bold">{video.zhTitle}</h1>
         <p className="mt-3 max-w-3xl text-sm leading-7 text-black/70">{video.description}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-black/62">
+          公开第三方内容在这里以“聚合预览 + 关键片段索引”为主；只有授权或自有内容才会进入更深的短视频分发链路。
+        </p>
         <div className="mt-5 flex flex-wrap gap-3 text-sm text-black/65">
           <span className="rounded-full border border-black/10 px-4 py-2">{video.channel.name}</span>
           <span className="rounded-full border border-black/10 px-4 py-2">
@@ -291,6 +294,10 @@ export function VideoAdminEditor({
           <span className="rounded-full border border-black/10 px-4 py-2">
             {"\u53ef\u64ad\u6027\uff1a"}
             {video.availabilityStatus}
+          </span>
+          <span className="rounded-full border border-black/10 px-4 py-2">
+            {"\u64ad\u653e\u6a21\u5f0f\uff1a"}
+            {video.playbackMode}
           </span>
         </div>
         {video.playbackErrorReason ? (
@@ -354,7 +361,7 @@ export function VideoAdminEditor({
 
       <section className="panel-card rounded-[2rem] p-6">
         <h2 className="display-font text-2xl font-bold">
-          {"AI \u5207\u7247\u7ed3\u679c"}
+          {"AI \u5173\u952e\u7247\u6bb5\u7ed3\u679c"}
         </h2>
         <div className="mt-5 space-y-5">
           {video.clips.map((clip) => (

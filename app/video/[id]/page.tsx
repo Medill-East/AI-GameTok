@@ -27,6 +27,9 @@ export default async function VideoPage({ params, searchParams }: PageProps) {
           <div className="eyebrow">Continue Watching</div>
           <h1 className="display-font text-4xl font-bold">{video.zhTitle}</h1>
           <p className="text-sm leading-7 text-black/72">{video.description}</p>
+          <div className="rounded-[1.25rem] border border-black/8 bg-white/70 px-4 py-3 text-sm leading-7 text-black/68">
+            这是一个站内聚合预览页。若 YouTube 内嵌播放被打断，可先在当前浏览器完成一次 YouTube 验证，再返回继续看；必要时也可直接跳到原视频。
+          </div>
           {video.availabilityStatus === "ok" ? (
             <div className="aspect-video overflow-hidden rounded-[1.75rem] border border-black/10 bg-black">
               <iframe
@@ -45,7 +48,7 @@ export default async function VideoPage({ params, searchParams }: PageProps) {
           ) : (
             <div className="rounded-[1.75rem] border border-black/10 bg-white/80 p-6 text-sm leading-7 text-black/70">
               <p className="font-semibold text-black">
-                {"\u8fd9\u6761\u89c6\u9891\u5f53\u524d\u4e0d\u9002\u5408\u7ad9\u5185\u64ad\u653e\u3002"}
+                {"\u8fd9\u6761\u89c6\u9891\u5f53\u524d\u4e0d\u9002\u5408\u7ad9\u5185\u9884\u89c8\u3002"}
               </p>
               <p className="mt-3">
                 {video.playbackErrorReason ??
@@ -60,20 +63,20 @@ export default async function VideoPage({ params, searchParams }: PageProps) {
               rel="noreferrer"
               className="rounded-full border border-black/10 px-4 py-3 text-sm font-semibold"
             >
-              {"\u53bb YouTube \u7ee7\u7eed\u770b"}
+              {"\u53bb YouTube \u7ee7\u7eed\u770b / \u9a8c\u8bc1"}
             </a>
             <Link
               href="/"
               className="rounded-full bg-[var(--forest)] px-4 py-3 text-sm font-semibold text-white"
             >
-              {"\u8fd4\u56de\u5207\u7247\u6d41"}
+              {"\u8fd4\u56de\u53d1\u73b0\u6d41"}
             </Link>
           </div>
         </div>
 
         <aside className="rounded-[1.5rem] border border-black/8 bg-white/70 p-5">
           <h2 className="display-font text-2xl font-bold">
-            {"\u8fd9\u6761\u957f\u89c6\u9891\u7684\u5207\u7247"}
+            {"\u8fd9\u6761\u957f\u89c6\u9891\u7684\u5173\u952e\u7247\u6bb5"}
           </h2>
           <div className="mt-4 space-y-3">
             {video.clips.map((clip) => (

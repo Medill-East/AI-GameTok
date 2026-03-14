@@ -21,6 +21,7 @@ export function buildChannelFromUrl(url: string, existingCount: number): Channel
     syncStatus: "idle",
     lastSyncedAt: null,
     authMode: "public",
+    contentTier: "third_party_public",
     analyticsConnectedAt: null,
   };
 }

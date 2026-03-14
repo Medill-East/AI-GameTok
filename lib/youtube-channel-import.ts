@@ -1210,6 +1210,8 @@ function toVideoRecord(
     availabilityStatus: playbackHealth.availabilityStatus,
     playbackCheckedAt: playbackHealth.playbackCheckedAt,
     playbackErrorReason: playbackHealth.playbackErrorReason,
+    playbackMode:
+      playbackHealth.availabilityStatus === "ok" ? "platform_embed" : "platform_link",
     searchText: "",
   };
 }
@@ -1368,6 +1370,7 @@ function buildManagedChannelRecord(id: string, config: ChannelImportConfig): Cha
     syncStatus: "idle",
     lastSyncedAt: null,
     authMode: "public",
+    contentTier: "third_party_public",
     analyticsConnectedAt: null,
   };
 }
