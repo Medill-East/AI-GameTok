@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { AdminDashboard } from "@/components/admin-dashboard";
+import { getReadOnlyPreviewMessage, isReadOnlyPreview } from "@/lib/preview-mode";
 import { getAdminOverview } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
   const overview = await getAdminOverview();
+  const readOnlyPreview = isReadOnlyPreview();
 
   return (
     <main className="section-shell space-y-8 py-8">
@@ -28,7 +30,12 @@ export default async function AdminPage() {
           {"\u8fd4\u56de\u524d\u53f0"}
         </Link>
       </div>
-      <AdminDashboard overview={overview} />
+      {readOnlyPreview ? (
+        <div className="rounded-[1.5rem] border border-[var(--accent)]/30 bg-[var(--accent)]/8 px-5 py-4 text-sm leading-7 text-black/72">
+          {getReadOnlyPreviewMessage()}
+        </div>
+      ) : null}
+      <AdminDashboard overview={overview} readOnlyPreview={readOnlyPreview} />
     </main>
   );
 }

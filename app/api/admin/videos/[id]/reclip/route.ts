@@ -1,3 +1,4 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { updateStore } from "@/lib/store";
 import { rebuildVideoFromSource } from "@/lib/youtube-channel-import";
 
@@ -6,6 +7,10 @@ interface RouteContext {
 }
 
 export async function POST(_request: Request, context: RouteContext) {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const { id } = await context.params;
   let summary = {
     importedVideos: 0,

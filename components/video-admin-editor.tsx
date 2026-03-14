@@ -3,10 +3,17 @@
 import { useRouter } from "next/navigation";
 import { startTransition, useState } from "react";
 import { CHANNEL_LABELS } from "@/lib/constants";
+import { getReadOnlyPreviewMessage } from "@/lib/preview-mode";
 import type { FeedClip, VideoDetail, VideoChannelSlug } from "@/lib/types";
 import { formatDuration } from "@/lib/youtube";
 
-function ClipEditor({ clip }: { clip: FeedClip }) {
+function ClipEditor({
+  clip,
+  readOnlyPreview = false,
+}: {
+  clip: FeedClip;
+  readOnlyPreview?: boolean;
+}) {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
@@ -24,6 +31,10 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
   });
 
   const mutate = (endpoint: string) => {
+    if (readOnlyPreview) {
+      setMessage(getReadOnlyPreviewMessage());
+      return;
+    }
     setSaving(true);
     startTransition(async () => {
       const response = await fetch(endpoint, { method: "POST" });
@@ -55,6 +66,10 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
         className="mt-5 grid gap-4"
         onSubmit={(event) => {
           event.preventDefault();
+          if (readOnlyPreview) {
+            setMessage(getReadOnlyPreviewMessage());
+            return;
+          }
           setSaving(true);
           startTransition(async () => {
             const response = await fetch(`/api/admin/clips/${clip.id}`, {
@@ -88,7 +103,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
           });
         }}
       >
-        <div className="grid gap-4 md:grid-cols-4">
+        <fieldset disabled={readOnlyPreview || saving} className="grid gap-4 md:grid-cols-4">
           <label className="text-sm font-semibold">
             {"\u5f00\u59cb\u79d2\u6570"}
             <input
@@ -121,13 +136,14 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
               onChange={(event) => setForm((current) => ({ ...current, confidence: event.target.value }))}
             />
           </label>
-        </div>
+        </fieldset>
 
         <label className="text-sm font-semibold">
           {"\u4e2d\u6587\u6807\u9898"}
           <input
             className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3"
             value={form.zhTitle}
+            disabled={readOnlyPreview || saving}
             onChange={(event) => setForm((current) => ({ ...current, zhTitle: event.target.value }))}
           />
         </label>
@@ -137,6 +153,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
           <textarea
             className="mt-2 min-h-28 w-full rounded-2xl border border-black/10 bg-white px-4 py-3"
             value={form.zhSummary}
+            disabled={readOnlyPreview || saving}
             onChange={(event) => setForm((current) => ({ ...current, zhSummary: event.target.value }))}
           />
         </label>
@@ -146,6 +163,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
           <textarea
             className="mt-2 min-h-28 w-full rounded-2xl border border-black/10 bg-white px-4 py-3"
             value={form.zhTakeaways}
+            disabled={readOnlyPreview || saving}
             onChange={(event) =>
               setForm((current) => ({ ...current, zhTakeaways: event.target.value }))
             }
@@ -158,6 +176,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
             <input
               className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3"
               value={form.tags}
+              disabled={readOnlyPreview || saving}
               onChange={(event) => setForm((current) => ({ ...current, tags: event.target.value }))}
             />
           </label>
@@ -166,6 +185,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
             <select
               className="mt-2 w-full rounded-2xl border border-black/10 bg-white px-4 py-3"
               value={form.channelSlug}
+              disabled={readOnlyPreview || saving}
               onChange={(event) =>
                 setForm((current) => ({
                   ...current,
@@ -184,6 +204,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
             <input
               type="checkbox"
               checked={form.editorPick}
+              disabled={readOnlyPreview || saving}
               onChange={(event) =>
                 setForm((current) => ({ ...current, editorPick: event.target.checked }))
               }
@@ -195,14 +216,14 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
         <div className="flex flex-wrap gap-3">
           <button
             type="submit"
-            disabled={saving}
+            disabled={saving || readOnlyPreview}
             className="rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white disabled:opacity-60"
           >
             {saving ? "\u4fdd\u5b58\u4e2d..." : "\u4fdd\u5b58\u4fee\u6539"}
           </button>
           <button
             type="button"
-            disabled={saving}
+            disabled={saving || readOnlyPreview}
             onClick={() => mutate(`/api/admin/clips/${clip.id}/publish`)}
             className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold"
           >
@@ -210,7 +231,7 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
           </button>
           <button
             type="button"
-            disabled={saving}
+            disabled={saving || readOnlyPreview}
             onClick={() => mutate(`/api/admin/clips/${clip.id}/archive`)}
             className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold"
           >
@@ -223,12 +244,22 @@ function ClipEditor({ clip }: { clip: FeedClip }) {
   );
 }
 
-export function VideoAdminEditor({ video }: { video: VideoDetail }) {
+export function VideoAdminEditor({
+  video,
+  readOnlyPreview = false,
+}: {
+  video: VideoDetail;
+  readOnlyPreview?: boolean;
+}) {
   const router = useRouter();
   const [runningAction, setRunningAction] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
 
   const runVideoAction = (endpoint: string, success: string) => {
+    if (readOnlyPreview) {
+      setStatusMessage(getReadOnlyPreviewMessage());
+      return;
+    }
     setRunningAction(endpoint);
     startTransition(async () => {
       const response = await fetch(endpoint, { method: "POST" });
@@ -268,7 +299,7 @@ export function VideoAdminEditor({ video }: { video: VideoDetail }) {
         <div className="mt-5 flex flex-wrap gap-3">
           <button
             type="button"
-            disabled={runningAction !== null}
+            disabled={runningAction !== null || readOnlyPreview}
             onClick={() =>
               runVideoAction(`/api/admin/videos/${video.id}/reclip`, "\u5df2\u91cd\u8dd1\u5207\u7247\u3002")
             }
@@ -280,7 +311,7 @@ export function VideoAdminEditor({ video }: { video: VideoDetail }) {
           </button>
           <button
             type="button"
-            disabled={runningAction !== null}
+            disabled={runningAction !== null || readOnlyPreview}
             onClick={() =>
               runVideoAction(`/api/admin/videos/${video.id}/reindex`, "\u5df2\u91cd\u5efa\u641c\u7d22\u7d22\u5f15\u3002")
             }
@@ -290,8 +321,12 @@ export function VideoAdminEditor({ video }: { video: VideoDetail }) {
           </button>
           <button
             type="button"
-            disabled={runningAction !== null}
+            disabled={runningAction !== null || readOnlyPreview}
             onClick={() => {
+              if (readOnlyPreview) {
+                setStatusMessage(getReadOnlyPreviewMessage());
+                return;
+              }
               setRunningAction("playback");
               startTransition(async () => {
                 const response = await fetch("/api/admin/playback/recheck", {
@@ -323,7 +358,7 @@ export function VideoAdminEditor({ video }: { video: VideoDetail }) {
         </h2>
         <div className="mt-5 space-y-5">
           {video.clips.map((clip) => (
-            <ClipEditor key={clip.id} clip={clip} />
+            <ClipEditor key={clip.id} clip={clip} readOnlyPreview={readOnlyPreview} />
           ))}
         </div>
       </section>

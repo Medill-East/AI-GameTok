@@ -1,3 +1,4 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { getVideoDetail, touchVideoSearchIndex } from "@/lib/store";
 
 interface RouteContext {
@@ -5,6 +6,10 @@ interface RouteContext {
 }
 
 export async function POST(_request: Request, context: RouteContext) {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const { id } = await context.params;
   const video = await getVideoDetail(id);
 

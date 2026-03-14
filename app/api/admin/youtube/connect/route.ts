@@ -1,9 +1,15 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
+
 const YOUTUBE_OAUTH_SCOPE = [
   "https://www.googleapis.com/auth/yt-analytics.readonly",
   "https://www.googleapis.com/auth/youtube.readonly",
 ].join(" ");
 
 export async function POST() {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const clientId = process.env.YOUTUBE_CLIENT_ID;
   const redirectUri = process.env.YOUTUBE_REDIRECT_URI;
 

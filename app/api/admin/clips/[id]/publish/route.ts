@@ -1,3 +1,4 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { setClipStatus } from "@/lib/store";
 
 interface RouteContext {
@@ -5,6 +6,10 @@ interface RouteContext {
 }
 
 export async function POST(_request: Request, context: RouteContext) {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const { id } = await context.params;
   await setClipStatus(id, "published");
   return Response.json({ ok: true });

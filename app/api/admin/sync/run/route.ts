@@ -1,7 +1,12 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { updateStore } from "@/lib/store";
 import { importPopularVideosFromChannels } from "@/lib/youtube-channel-import";
 
 export async function POST() {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   try {
     let summary = {
       importedVideos: 0,

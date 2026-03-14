@@ -1,7 +1,12 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { updateStore } from "@/lib/store";
 import { recheckVideoPlayback } from "@/lib/youtube-channel-import";
 
 export async function POST(request: Request) {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const body = (await request.json().catch(() => ({}))) as { videoId?: string };
   let checked = 0;
   let issues = 0;

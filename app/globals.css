@@ -11,6 +11,19 @@
   --forest: #0f6b4d;
   --gold: #e8b34b;
   --shadow: 0 20px 80px rgba(17, 34, 24, 0.12);
+  --font-body:
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "Noto Sans CJK SC",
+    "Segoe UI",
+    sans-serif;
+  --font-display:
+    "Avenir Next",
+    "Space Grotesk",
+    "Trebuchet MS",
+    "Segoe UI",
+    sans-serif;
 }
 
 @theme inline {

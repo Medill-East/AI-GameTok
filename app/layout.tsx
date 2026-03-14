@@ -1,18 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_SC, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { APP_NAME } from "@/lib/constants";
-
-const display = Space_Grotesk({
-  variable: "--font-display",
-  subsets: ["latin"],
-});
-
-const body = Noto_Sans_SC({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   title: APP_NAME,
@@ -47,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN">
-      <body className={`${display.variable} ${body.variable} antialiased`}>
+      <body className="antialiased">
         {children}
       </body>
     </html>

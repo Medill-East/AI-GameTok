@@ -1,3 +1,4 @@
+import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { patchClip } from "@/lib/store";
 
 interface RouteContext {
@@ -5,6 +6,10 @@ interface RouteContext {
 }
 
 export async function PATCH(request: Request, context: RouteContext) {
+  if (isReadOnlyPreview()) {
+    return readOnlyPreviewResponse();
+  }
+
   const { id } = await context.params;
   const body = (await request.json()) as {
     startSec?: number;

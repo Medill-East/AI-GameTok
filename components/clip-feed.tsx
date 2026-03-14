@@ -31,6 +31,7 @@ interface ClipFeedProps {
   initialClips: FeedClip[];
   initialNextCursor: number | null;
   currentChannel?: VideoChannelSlug;
+  readOnlyPreview?: boolean;
 }
 
 interface RenderedFeedClip extends FeedClip {
@@ -76,6 +77,7 @@ export function ClipFeed({
   initialClips,
   initialNextCursor,
   currentChannel,
+  readOnlyPreview = false,
 }: ClipFeedProps) {
   const { language, toggleLanguage } = useDisplayLanguage();
   const copy = useMemo(
@@ -324,15 +326,17 @@ export function ClipFeed({
               <BookmarkIcon className="h-5 w-5" />
               <span>{copy.saved}</span>
             </Link>
-            <Link
-              aria-label={copy.admin}
-              className="hidden h-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:inline-flex md:gap-2 md:px-4"
-              href="/admin"
-              title={copy.admin}
-            >
-              <SparkGridIcon className="h-5 w-5" />
-              <span>{copy.admin}</span>
-            </Link>
+            {!readOnlyPreview ? (
+              <Link
+                aria-label={copy.admin}
+                className="hidden h-12 items-center justify-center rounded-full border border-white/20 bg-black/28 text-white transition hover:bg-black/40 md:inline-flex md:gap-2 md:px-4"
+                href="/admin"
+                title={copy.admin}
+              >
+                <SparkGridIcon className="h-5 w-5" />
+                <span>{copy.admin}</span>
+              </Link>
+            ) : null}
           </nav>
         </div>
         <div className="pointer-events-auto mt-4 hidden gap-2 overflow-x-auto hide-scrollbar md:flex">

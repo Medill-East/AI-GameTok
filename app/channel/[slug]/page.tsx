@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { ClipFeed } from "@/components/clip-feed";
 import { CHANNEL_LABELS } from "@/lib/constants";
+import { isReadOnlyPreview } from "@/lib/preview-mode";
 import { getFeed } from "@/lib/store";
 import type { VideoChannelSlug } from "@/lib/types";
 
@@ -19,6 +20,7 @@ export default async function ChannelPage({ params }: PageProps) {
   }
 
   const { clips, nextCursor } = await getFeed({ channel, limit: 16 });
+  const readOnlyPreview = isReadOnlyPreview();
 
   return (
     <main className="h-[100dvh] md:px-4 md:py-6 xl:px-6">
@@ -26,6 +28,7 @@ export default async function ChannelPage({ params }: PageProps) {
         initialClips={clips}
         initialNextCursor={nextCursor}
         currentChannel={channel}
+        readOnlyPreview={readOnlyPreview}
       />
     </main>
   );

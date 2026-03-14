@@ -3,10 +3,17 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { startTransition, useState } from "react";
+import { getReadOnlyPreviewMessage } from "@/lib/preview-mode";
 import type { AdminOverview } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
-export function AdminDashboard({ overview }: { overview: AdminOverview }) {
+export function AdminDashboard({
+  overview,
+  readOnlyPreview = false,
+}: {
+  overview: AdminOverview;
+  readOnlyPreview?: boolean;
+}) {
   const router = useRouter();
   const [message, setMessage] = useState<string | null>(null);
   const [adding, setAdding] = useState(false);
@@ -48,8 +55,12 @@ export function AdminDashboard({ overview }: { overview: AdminOverview }) {
             <div className="flex flex-wrap gap-3">
               <button
                 type="button"
-                disabled={syncing}
+                disabled={syncing || readOnlyPreview}
                 onClick={() => {
+                  if (readOnlyPreview) {
+                    setMessage(getReadOnlyPreviewMessage());
+                    return;
+                  }
                   setSyncing(true);
                   startTransition(async () => {
                     const response = await fetch("/api/admin/sync/run", { method: "POST" });
@@ -76,8 +87,12 @@ export function AdminDashboard({ overview }: { overview: AdminOverview }) {
               </button>
               <button
                 type="button"
-                disabled={rechecking}
+                disabled={rechecking || readOnlyPreview}
                 onClick={() => {
+                  if (readOnlyPreview) {
+                    setMessage(getReadOnlyPreviewMessage());
+                    return;
+                  }
                   setRechecking(true);
                   startTransition(async () => {
                     const response = await fetch("/api/admin/playback/recheck", {
@@ -104,8 +119,12 @@ export function AdminDashboard({ overview }: { overview: AdminOverview }) {
               </button>
               <button
                 type="button"
-                disabled={connecting}
+                disabled={connecting || readOnlyPreview}
                 onClick={() => {
+                  if (readOnlyPreview) {
+                    setMessage(getReadOnlyPreviewMessage());
+                    return;
+                  }
                   setConnecting(true);
                   startTransition(async () => {
                     const response = await fetch("/api/admin/youtube/connect", {
@@ -145,6 +164,10 @@ export function AdminDashboard({ overview }: { overview: AdminOverview }) {
           className="panel-card rounded-[2rem] p-6"
           onSubmit={(event) => {
             event.preventDefault();
+            if (readOnlyPreview) {
+              setMessage(getReadOnlyPreviewMessage());
+              return;
+            }
             const form = new FormData(event.currentTarget);
             const url = String(form.get("url") ?? "").trim();
 
@@ -191,7 +214,7 @@ export function AdminDashboard({ overview }: { overview: AdminOverview }) {
           </label>
           <button
             type="submit"
-            disabled={adding}
+            disabled={adding || readOnlyPreview}
             className="mt-4 rounded-full border border-black/10 px-5 py-3 text-sm font-semibold disabled:opacity-60"
           >
             {adding ? "\u6dfb\u52a0\u4e2d..." : "\u52a0\u5165\u767d\u540d\u5355"}
