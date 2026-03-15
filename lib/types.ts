@@ -125,6 +125,7 @@ export interface AdminOverview {
   clips: FeedClip[];
   pendingClips: FeedClip[];
   playbackIssues: (Video & { channel: Channel; clipCount: number })[];
+  syncRuns: SyncRun[];
   counts: {
     publishedClips: number;
     pendingClips: number;
@@ -150,6 +151,19 @@ export interface SearchResults {
   clips: SearchClipResult[];
   videos: SearchVideoResult[];
   nextCursor: number | null;
+}
+
+export interface SyncRun {
+  id: string;
+  triggerSource: "manual" | "cron";
+  status: "running" | "success" | "error";
+  startedAt: string;
+  finishedAt: string | null;
+  channelsProcessed: number;
+  videosProcessed: number;
+  clipsProcessed: number;
+  errorSummary: string | null;
+  details: Record<string, unknown> | null;
 }
 
 export interface RemoteCatalogVideo {

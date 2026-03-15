@@ -298,6 +298,58 @@ export function AdminDashboard({
       </section>
 
       <section className="panel-card rounded-[2rem] p-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <h2 className="display-font text-2xl font-bold">
+              {"\u6700\u8fd1\u540c\u6b65"}
+            </h2>
+            <p className="mt-2 text-sm text-black/65">
+              {
+                "\u67e5\u770b\u81ea\u52a8\u6216\u624b\u52a8\u540c\u6b65\u7684\u6700\u65b0\u7ed3\u679c\uff0c\u5305\u62ec\u5f00\u59cb\u65f6\u95f4\u3001\u5904\u7406\u6570\u91cf\u548c\u9519\u8bef\u6458\u8981\u3002"
+              }
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 space-y-3">
+          {overview.syncRuns.length ? (
+            overview.syncRuns.map((run) => (
+              <article
+                key={run.id}
+                className="rounded-[1.5rem] border border-black/8 bg-white/70 p-4"
+              >
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">
+                      {run.triggerSource === "cron"
+                        ? "\u81ea\u52a8\u540c\u6b65"
+                        : "\u624b\u52a8\u540c\u6b65"}
+                    </p>
+                    <p className="mt-1 text-sm text-black/60">
+                      {formatDate(run.startedAt)}
+                      {run.finishedAt ? ` -> ${formatDate(run.finishedAt)}` : ""}
+                    </p>
+                  </div>
+                  <span className="rounded-full border border-black/10 px-3 py-2 text-xs font-semibold">
+                    {run.status.toUpperCase()}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm text-black/65">
+                  {`\u9891\u9053 ${run.channelsProcessed} / \u89c6\u9891 ${run.videosProcessed} / \u7247\u6bb5 ${run.clipsProcessed}`}
+                </p>
+                {run.errorSummary ? (
+                  <p className="mt-2 text-sm leading-6 text-[var(--accent)]">{run.errorSummary}</p>
+                ) : null}
+              </article>
+            ))
+          ) : (
+            <p className="text-sm leading-7 text-black/70">
+              {"\u5f53\u524d\u8fd8\u6ca1\u6709\u53ef\u7528\u7684\u540c\u6b65\u8fd0\u884c\u8bb0\u5f55\u3002"}
+            </p>
+          )}
+        </div>
+      </section>
+
+      <section className="panel-card rounded-[2rem] p-6">
         <h2 className="display-font text-2xl font-bold">
           {"\u9891\u9053\u767d\u540d\u5355"}
         </h2>

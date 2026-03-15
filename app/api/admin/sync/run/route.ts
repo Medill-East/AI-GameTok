@@ -1,27 +1,13 @@
-import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
-import { updateStore } from "@/lib/store";
-import { importPopularVideosFromChannels } from "@/lib/youtube-channel-import";
+import { runCatalogSync } from "@/lib/catalog-sync";
+import { canWriteCatalog, readOnlyPreviewResponse } from "@/lib/preview-mode";
 
 export async function POST() {
-  if (isReadOnlyPreview()) {
+  if (!canWriteCatalog()) {
     return readOnlyPreviewResponse();
   }
 
   try {
-    let summary = {
-      importedVideos: 0,
-      importedClips: 0,
-      skippedVideos: 0,
-      removedVideos: 0,
-      removedClips: 0,
-    };
-
-    await updateStore(async (current) => {
-      const result = await importPopularVideosFromChannels(current, 48);
-      summary = result.summary;
-      return result.next;
-    });
-
+    const summary = await runCatalogSync("manual", 48);
     return Response.json({ ok: true, summary });
   } catch (error) {
     return Response.json(

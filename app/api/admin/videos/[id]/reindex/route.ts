@@ -1,4 +1,4 @@
-import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
+import { canWriteCatalog, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { getVideoDetail, touchVideoSearchIndex } from "@/lib/store";
 
 interface RouteContext {
@@ -6,7 +6,7 @@ interface RouteContext {
 }
 
 export async function POST(_request: Request, context: RouteContext) {
-  if (isReadOnlyPreview()) {
+  if (!canWriteCatalog()) {
     return readOnlyPreviewResponse();
   }
 

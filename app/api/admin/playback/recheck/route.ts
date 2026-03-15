@@ -1,9 +1,9 @@
-import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
+import { canWriteCatalog, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { updateStore } from "@/lib/store";
 import { recheckVideoPlayback } from "@/lib/youtube-channel-import";
 
 export async function POST(request: Request) {
-  if (isReadOnlyPreview()) {
+  if (!canWriteCatalog()) {
     return readOnlyPreviewResponse();
   }
 

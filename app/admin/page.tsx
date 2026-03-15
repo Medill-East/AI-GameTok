@@ -1,11 +1,20 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { AdminDashboard } from "@/components/admin-dashboard";
-import { getReadOnlyPreviewMessage, isReadOnlyPreview } from "@/lib/preview-mode";
+import {
+  getReadOnlyPreviewMessage,
+  isInternalAdminEnabled,
+  isReadOnlyPreview,
+} from "@/lib/preview-mode";
 import { getAdminOverview } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  if (!isInternalAdminEnabled()) {
+    notFound();
+  }
+
   const overview = await getAdminOverview();
   const readOnlyPreview = isReadOnlyPreview();
 

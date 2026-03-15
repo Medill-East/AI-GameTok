@@ -1,4 +1,4 @@
-import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
+import { canWriteCatalog, readOnlyPreviewResponse } from "@/lib/preview-mode";
 
 const YOUTUBE_OAUTH_SCOPE = [
   "https://www.googleapis.com/auth/yt-analytics.readonly",
@@ -6,7 +6,7 @@ const YOUTUBE_OAUTH_SCOPE = [
 ].join(" ");
 
 export async function POST() {
-  if (isReadOnlyPreview()) {
+  if (!canWriteCatalog()) {
     return readOnlyPreviewResponse();
   }
 

@@ -1,9 +1,9 @@
-import { isReadOnlyPreview, readOnlyPreviewResponse } from "@/lib/preview-mode";
+import { canWriteCatalog, readOnlyPreviewResponse } from "@/lib/preview-mode";
 import { addChannel, readStore } from "@/lib/store";
 import { buildChannelFromUrl } from "@/lib/sync";
 
 export async function POST(request: Request) {
-  if (isReadOnlyPreview()) {
+  if (!canWriteCatalog()) {
     return readOnlyPreviewResponse();
   }
 

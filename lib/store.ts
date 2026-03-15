@@ -1,6 +1,13 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import initialStore from "@/data/store.json";
+import {
+  dbReadStore,
+  dbSearchCatalog,
+  dbWriteStore,
+  isDatabaseConfigured,
+  listRecentSyncRuns,
+} from "@/lib/db";
 import { buildYoutubeWatchUrl } from "@/lib/youtube";
 import type {
   AdminOverview,
@@ -138,11 +145,19 @@ function enrichSearchText(data: StoreData): StoreData {
   };
 }
 
-export async function readStore(): Promise<StoreData> {
+async function readStoreFromJson(): Promise<StoreData> {
   await ensureStore();
   const content = await fs.readFile(STORE_PATH, "utf-8");
   const parsed = JSON.parse(content) as StoreData;
   return enrichSearchText(normalizeStore(parsed));
+}
+
+export async function readStore(): Promise<StoreData> {
+  if (isDatabaseConfigured()) {
+    return dbReadStore();
+  }
+
+  return readStoreFromJson();
 }
 
 export async function updateStore(
@@ -151,6 +166,12 @@ export async function updateStore(
   const task = writeQueue.then(async () => {
     const current = await readStore();
     const next = enrichSearchText(normalizeStore(await updater(current)));
+
+    if (isDatabaseConfigured()) {
+      await dbWriteStore(next);
+      return next;
+    }
+
     await fs.writeFile(STORE_PATH, JSON.stringify(next, null, 2), "utf-8");
     return next;
   });
@@ -406,6 +427,7 @@ export async function getAdminOverview(): Promise<AdminOverview> {
   const data = await readStore();
   const channelMap = new Map(data.channels.map((channel) => [channel.id, channel]));
   const videoMap = new Map(data.videos.map((video) => [video.id, video]));
+  const syncRuns = isDatabaseConfigured() ? await listRecentSyncRuns(5) : [];
 
   const clips = sortClips(data.clips)
     .map((clip) => hydrateClip(clip, videoMap, channelMap))
@@ -445,6 +467,7 @@ export async function getAdminOverview(): Promise<AdminOverview> {
       channels: data.channels.length,
       playbackIssues: playbackIssues.length,
     },
+    syncRuns,
   };
 }
 
@@ -455,6 +478,10 @@ export async function searchCatalog(options: {
   cursor?: number;
   limit?: number;
 }): Promise<SearchResults> {
+  if (isDatabaseConfigured()) {
+    return dbSearchCatalog(options);
+  }
+
   const data = await readStore();
   const channelMap = new Map(data.channels.map((channel) => [channel.id, channel]));
   const videoMap = new Map(data.videos.map((video) => [video.id, video]));

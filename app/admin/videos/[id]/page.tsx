@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { VideoAdminEditor } from "@/components/video-admin-editor";
-import { getReadOnlyPreviewMessage, isReadOnlyPreview } from "@/lib/preview-mode";
+import {
+  getReadOnlyPreviewMessage,
+  isInternalAdminEnabled,
+  isReadOnlyPreview,
+} from "@/lib/preview-mode";
 import { getVideoDetail } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
@@ -11,6 +15,10 @@ interface PageProps {
 }
 
 export default async function AdminVideoPage({ params }: PageProps) {
+  if (!isInternalAdminEnabled()) {
+    notFound();
+  }
+
   const { id } = await params;
   const video = await getVideoDetail(id);
   const readOnlyPreview = isReadOnlyPreview();
